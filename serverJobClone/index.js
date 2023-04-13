@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import express from 'express'; 
 import mongoose from 'mongoose';
 import userRouter from './src/routes/user.route.js';
+import jobRouter from './src/routes/job.route.js';
+import applicantRouter from './src/routes/applicant.route.js'
 
 //import userRouter from './src/controllers/user.control';
 //import userRouter from './src/controllers/user.control';
@@ -34,6 +36,8 @@ connectDB(url , {}).then(()=>{
  
 
 app.use(userRouter)
+app.use(jobRouter)
+app.use(applicantRouter)
 
 // async function connectDb(){
 

@@ -1,9 +1,9 @@
-import Job from '../models/model.jobApp'
+import Job from '../models/jobApp.js'
 
-async function registerJob(recuiter,jobTitle,jobStatus,jobType,feild,position,skill){
+async function registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill){
 
     const newJob = new Job({
-        recuiter,
+        recuiterEmail,
         jobTitle,
         jobStatus,
         jobType,
@@ -18,7 +18,15 @@ async function registerJob(recuiter,jobTitle,jobStatus,jobType,feild,position,sk
 
 }
 
+async function recuiterJob(email){
+
+    const recuiterJob = await Job.find({recuiterEmail:email})
+    console.log(email)
+    return recuiterJob
+}
+
 
 export default {
     registerJob,
+    recuiterJob
 }

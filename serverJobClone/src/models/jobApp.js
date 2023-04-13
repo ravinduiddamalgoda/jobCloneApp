@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const jobSchema = new Schema({
+const jobSchema = new Schema({ 
     jobTitle: {
         required: true,
         type: String,
@@ -21,11 +21,16 @@ const jobSchema = new Schema({
         required: true,
         type: String,
     },
-    recuiter:{
+    recuiterEmail:{
+        required: true,
+        type: String,
+    },
+    position:{
         required: true,
         type: String,
     },
 
 })
 
-export default jobSchema;
+const Job =  mongoose.model('Job' , jobSchema);
+export default Job;
