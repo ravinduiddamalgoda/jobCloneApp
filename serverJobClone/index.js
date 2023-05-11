@@ -5,13 +5,14 @@ import mongoose from 'mongoose';
 import userRouter from './src/routes/user.route.js';
 import jobRouter from './src/routes/job.route.js';
 import applicantRouter from './src/routes/applicant.route.js'
-
+import recruiterRoute from './src/routes/recruiter.route.js';
+import cors from 'cors';
 //import userRouter from './src/controllers/user.control';
 //import userRouter from './src/controllers/user.control';
 //const userRouter = require('./src/controllers/user.control');
 // require("dotenv").config();
 const app =  express();
-
+app.use(cors());
 app.use(bodyParser.json());
 const url = 'mongodb+srv://user_dev:test123@jobclone.u4tnvcc.mongodb.net/?retryWrites=true&w=majority';
 const port = 3000;
@@ -38,7 +39,7 @@ connectDB(url , {}).then(()=>{
 app.use(userRouter)
 app.use(jobRouter)
 app.use(applicantRouter)
-
+app.use(recruiterRoute);
 // async function connectDb(){
 
 //     await mongoose.connect(url);

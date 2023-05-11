@@ -12,14 +12,15 @@ async function findUserByEmail(email){
 }
 
 
- async function register(fname , lname , email , password){
+ async function register(fname , lname , email , password , major ){
 
     const hash = await createPasswordHash(password);
     const newUser = new User({
         fname,
         lname,
         email,
-        password: hash
+        password: hash, 
+        major,
     });
     
     await newUser.save();

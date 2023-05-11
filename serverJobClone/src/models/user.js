@@ -12,6 +12,10 @@ const userSchema =  new Schema({
         required: true,
         type: String,
     },
+    major: {
+        required: true,
+        type: String
+    }
    
 });
 

@@ -2,34 +2,35 @@ import mongoose, { Schema } from "mongoose";
 
 const jobSchema = new Schema({ 
     jobTitle: {
-        required: true,
+        required: true, // title eka 
         type: String,
     },
     jobStatus:{
-        required: true,
+        required: true, // time period 
         type: String,
     },
     jobType:{
-        required: true,
+        required: true, // permenat - tempory
         type: String,
     },
     feild:{
-        required: true,
+        required: true, // IT BM etc
         type: String,
     },
     skill:{
+        required: true, /// array skills 
+        type: [String],
+    },
+    recuiterEmail:{ 
         required: true,
         type: String,
     },
-    recuiterEmail:{
+    position:{  // intern senior 
         required: true,
         type: String,
     },
-    position:{
-        required: true,
-        type: String,
-    },
-
+    company:String,
+    descripton: String,
 })
 
 const Job =  mongoose.model('Job' , jobSchema);

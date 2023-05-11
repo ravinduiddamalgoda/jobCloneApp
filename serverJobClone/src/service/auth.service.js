@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-const APP_SECRET = 'my-todo-app-secret';
-const APP_ACCESS_TOKEN_EXP_SECS = 60;
+const APP_SECRET = 'job-app-test-secret';
+const APP_ACCESS_TOKEN_EXP_SECS = 3600;
 const JWT_OPTIONS = {
     algorithm: "HS256",
-    issuer: "mytodoapp.com/api",
-    audience: "mytodoapp.com",
+    issuer: "jobfinderApp.com/api",
+    audience: "jobfinderApp.com",
     expiresIn: APP_ACCESS_TOKEN_EXP_SECS,
 }
 
