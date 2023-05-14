@@ -9,6 +9,7 @@ const cvData = {
       degree: 'Bachelor of Science',
       institution: 'University of Example',
       year: '2020',
+      DegStatus: 'none'
     },
     // Add more education items if needed
   ],
@@ -36,6 +37,7 @@ const EducationSection = () => (
         <Text style={styles.itemTitle}>{educationItem.degree}</Text>
         <Text>{educationItem.institution}</Text>
         <Text>{educationItem.year}</Text>
+        <Text>{educationItem.DegStatus}</Text>
       </View>
     ))}
   </View>
@@ -88,11 +90,11 @@ const CV = () => (
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
-    padding: 30,
+    // padding: 30,
     backgroundColor: '#fff',
   },
   container: {
-    margin: 'auto',
+    margin: '10%',
     maxWidth: 600,
   },
   title: {
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#333',
-    textDecoration: 'underline',
+    // textDecoration: 'underline',
 
   },
   sectionTitle: {
