@@ -21,7 +21,7 @@ async function registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,positi
 }
 
 async function recuiterJob(email){
-
+    console.log(email)
     const recuiterJob = await Job.find({recuiterEmail:email})
     console.log(email)
     return recuiterJob

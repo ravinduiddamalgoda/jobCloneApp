@@ -68,8 +68,8 @@ export function AuthGuard({ children }) {
         if (authPayload.token === null){
           console.log("Login Auth");
           console.log(authPayload.token);
-          // return <Navigate to="/login" />;
-          navigate('/login');
+          return <Navigate to="/login" />;
+          // navigate('/login');
         }
 }
     
@@ -85,6 +85,7 @@ export function GuestGuard({ children }) {
   // check if user exists
   if (authPayload && authPayload.token) {
     console.log("app Guest");
+    // return <Navigate to={`{redirectPath}`} />;
     // return <Navigate to="/app" />;
   }
   return <>{children}</>;

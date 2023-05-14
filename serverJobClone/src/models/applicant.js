@@ -13,6 +13,10 @@ const applicantSchema = new Schema({
     cv:{
         required:true,
         type:String
+    },
+    appliedJobID:{
+        required:true,
+        type:String
     }
 },{timestamps:true})
 

@@ -3,6 +3,7 @@ import recruiterService from "../service/recruiter.service.js";
 
 export const curruntRecruiter = async (req , res) => {
   const curntRecruiter  = req.user;
+  console.log(curntRecruiter.email);
   try{
     if(!curntRecruiter){
       return res.status(400).send({ err: 'User Not Logged In'});

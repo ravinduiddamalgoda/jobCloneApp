@@ -2,7 +2,10 @@ import { Box, makeStyles } from "@material-ui/core";
 import { Container, Typography } from "@mui/material";
 import { JobCard } from "../component/JobCard";
 import { UserCard } from "../component/UserCard";
-
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../component/AuthProvider";
+import axios from "axios";
+import { useSnackbar } from "notistack";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,15 +34,47 @@ const useStyles = makeStyles((theme) => ({
 
 export function MainPageUser(){
     const className = useStyles();
+    const [userName, setUserName] = useState("");
+    const token = useContext(AuthContext);
+    const {enqueueSnackbar} = useSnackbar();
+    // console.log(token);
+    var resData;
+    useEffect(() => {
+        try{
+            const currentUser = async () => {
 
+        
+                const res = await axios
+                  .get('http://localhost:3000/currunt-user', {
+                    headers: {
+                      Authorization: 'Bearer ' + token.token,
+                    },
+                  })
+                  .then(res => {
+                   var name =  res.data.fname +" " +res.data.lname;
+                   setUserName(name);
+                   console.log(typeof(res.data));
+                  });
+              };
+          
+              if (token) {
+                  resData = currentUser();
+              }
 
+        }catch(err){
+            enqueueSnackbar(err, { variant: 'error' });
 
+        }
+        
+      }, [token]);
+    
+    console.log(userName);
     var skills = ["js" , "node" ," MERN Stack"];
     var des = "This is greate job position who looking for a Intern in web developer title.";
     return(<>
 
         <Container sx={{ display: 'flex' , flexDirection:'row' }}>
-            <UserCard />
+            <UserCard name = {userName}/>
                  
             <Container sx={{ }} >
                 <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/>

@@ -30,15 +30,21 @@ export const allJobs = async (req ,res) => {
 
 }
 
-export const getJobByRecuiter = async (req,res) =>{
-    
-    try{
-        // const curntRecruiter  = req.user;
-        const {recuiterEmail} = req.body;
+export const getJobByRecuiter = async (req,res) => {
+    // const curntRecruiter  = req.user;
+    // console.log(curntRecruiter.email);
 
-        const recuiterJob = await jobService.recuiterJob(recuiterEmail)
+    try{
+        
+        // const {recuiterEmail} = req.body;
+        // console.log(curntRecruiter.email);
+        // if(!curntRecruiter) {
+        //     console.log(recuiterEmail);
+        //     return res.status(400).send({ err: 'email not found' });
+        // }
+        const recuiterJob = await jobService.recuiterJob("kumar@gmail.com");
         res.status(200).json(recuiterJob);
     }catch(err){
-        res.status(400).send({ err: err });
+        res.status(400).send({ err: err.message });
     }
 }

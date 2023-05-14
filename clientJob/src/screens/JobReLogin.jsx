@@ -72,7 +72,7 @@ const useStyle = makeStyles((theme)=>({
 //     },
 //   });
 
-export function LoginPage(){
+export function RecruiterLoginPage(){
     const classes = useStyle();
     // let{ init } = useContext(AuthContext);
     let { init } = useContext(AuthContext);
@@ -87,7 +87,7 @@ export function LoginPage(){
 
     const makeLogin = async (formData) => {
       try {
-        const res = await axios.post('http://localhost:3000/login', {
+        const res = await axios.post('http://localhost:3000/recruiter-login', {
           ...formData,
         });
         console.log(res.data);
@@ -135,7 +135,7 @@ export function LoginPage(){
           {({values, handleChange, handleSubmit}) => {
             return (
               <>
-                <Typography variant="h4" className={classes.login}>User Login</Typography>
+                <Typography variant="h3" className={classes.login}>Job Recruiter Login</Typography>
               
                 <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
                   <TextField

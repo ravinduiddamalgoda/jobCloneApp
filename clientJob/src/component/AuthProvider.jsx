@@ -19,7 +19,7 @@ export function AuthProviderComponent({ children }){
     const init = useCallback(async () => {
         try{
             setLoading(true);
-            console.log("Initalize Method..");
+            // console.log("Initalize Method..");
             const fromStorage = await localStorage.getItem('token');
             console.log(fromStorage);
             if(fromStorage){
