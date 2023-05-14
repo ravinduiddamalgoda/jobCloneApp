@@ -2,74 +2,83 @@ import { Box, makeStyles } from "@material-ui/core";
 import { Button, Card, CardActions, CardContent, Container, List, ListItem, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
-
-
-    boxStyle:{
-        border: '1px solid',
-        [theme.breakpoints.up('900')]: {
-            width: '600px',
-        },
-        [theme.breakpoints.down('900')]: {
-            width: '600px',
-        },
-        [theme.breakpoints.down('600')]: {
-            width: '300px',
-            
-            
-        }, 
-        // background: '#4EB5FF',
-        marginLeft: '15%',
-        marginRight: '15%',
-        borderRadius: '0px',
-        marginTop:'3%',
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 300,
+    [theme.breakpoints.up("sm")]: {
+      width: 400,
+      marginTop:"4rem"
     },
-
-    title1: {
-        flexDirection: 'colomn', 
-        flex: '1',
-    }, 
-    cardStyle:{
-        paddingTop: '2px', 
-        height: '300px' ,
-        width: '200px' , 
-        marginTop:'3%',
-    }
-
+    border: "1px solid #ddd",
+    borderRadius: 0,
+    marginTop: theme.spacing(3),
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#fff",
+    height: 300,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 600,
+    color: "#333",
+    marginBottom: theme.spacing(1),
+    textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    marginBottom: theme.spacing(2),
+    textAlign: "center",
+  },
+  content: {
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
+  },
+  button: {
+    textTransform: "none",
+  },
 }));
 
+export function UserCard(props) {
+  const classes = useStyles();
+  const { name } = props;
 
+  const firstName = name.split(" ")[0];
+  const lastName = name.split(" ")[1];
 
-export function UserCard(props){
-    const className = useStyles();
-    return(<>
-    
-    <Card className={className.cardStyle}>
-        <CardContent >
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                
-            </Typography>
-            <Typography variant="h5" component="div">
-                Welcome {props.name}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                Find a great job for you
-            </Typography>
-            <Typography variant="body2">
-                
-            </Typography>
-        </CardContent>
-        <CardActions>
-            <Button size="small">
-                <Link to="/app/cv">
-                  <Typography sx ={{ textDecoration: 'none'}}>Generate CV</Typography>
-                </Link>
-            </Button>
-        </CardActions>
-
+  return (
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography className={classes.title} component="h2" style={{ color: "#28a745", fontSize: 22}}>
+          Welcome
+        </Typography>
+        <Typography className={classes.title} component="h2" style={{color: '#333', fontSize: 20}}>
+          {firstName} {lastName}
+        </Typography>
+        <Typography className={classes.subtitle} component="p" style={{color: '#666', fontSize: 16}}>
+          Find a great job for you
+        </Typography>
+        <Typography className={classes.content} variant="body2" color="textSecondary" component="p" style={{color: '#666', fontSize: 14}}>
+          Create a professional CV with our easy-to-use tool.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          className={classes.button}
+          size="large"
+          variant="contained"
+          component={Link}
+          to="/app/cv"
+          style={{ backgroundColor: "#017143" }}
+        >
+          Generate CV
+        </Button>
+      </CardActions>
     </Card>
-    
-    
-    </>);
+  );
 }

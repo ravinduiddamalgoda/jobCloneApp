@@ -78,7 +78,16 @@ export function MainPageUser(){
                  
             <Container sx={{ }} >
                 <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/>
-                <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/>
+               
+                <JobCard jobTitle="Intern for Software Engineering" 
+                    company="Axoten Innovation" jobStatus = "6 months" 
+                    jobType = "Tempory" feild = "Software Engineering" 
+                    position = "Intern" skill = {skills} description = {des}/>
+
+                <JobCard jobTitle="Intern for Software Engineering" 
+                    company="Axoten Innovation" jobStatus = "6 months" 
+                    jobType = "Tempory" feild = "Software Engineering" 
+                    position = "Intern" skill = {skills} description = {des}/>
             </Container>
              
 
