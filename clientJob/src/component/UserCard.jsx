@@ -54,16 +54,16 @@ export function UserCard(props) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} component="h2" style={{ color: "#28a745", fontSize: 22}}>
+        <Typography className={classes.title} component="h2" sx={{ color: "#28a745", fontSize: 22}}>
           Welcome
         </Typography>
-        <Typography className={classes.title} component="h2" style={{color: '#333', fontSize: 20}}>
+        <Typography className={classes.title} component="h2" sx={{color: '#333', fontSize: 20}}>
           {firstName} {lastName}
         </Typography>
-        <Typography className={classes.subtitle} component="p" style={{color: '#666', fontSize: 16}}>
+        <Typography className={classes.subtitle} component="p" sx={{color: '#666', fontSize: 16}}>
           Find a great job for you
         </Typography>
-        <Typography className={classes.content} variant="body2" color="textSecondary" component="p" style={{color: '#666', fontSize: 14}}>
+        <Typography className={classes.content} variant="body2" color="textSecondary" component="p" sx={{color: '#666', fontSize: 14}}>
           Create a professional CV with our easy-to-use tool.
         </Typography>
       </CardContent>
@@ -74,7 +74,7 @@ export function UserCard(props) {
           variant="contained"
           component={Link}
           to="/app/cv"
-          style={{ backgroundColor: "#017143" }}
+          sx={{ backgroundColor: "#017143" }}
         >
           Generate CV
         </Button>
