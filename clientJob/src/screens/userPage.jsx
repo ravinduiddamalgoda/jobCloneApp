@@ -20,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
             width: '600px',
         },
         [theme.breakpoints.down('600')]: {
-            width: '300px',
-            
-            
+            width: '300px',  
         }, 
         // background: '#4EB5FF',
         marginLeft: '15%',
