@@ -34,6 +34,7 @@ export function MainPageUser() {
   const [jobData , setJobData] = useState([]);
   const token = useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
+  const [searchTerm, setSearchTerm] = useState("");
   // console.log(token);
   var resData;
   useEffect(() => {
@@ -88,12 +89,23 @@ export function MainPageUser() {
   return (
     <>
     {/* <Headerm/> */}
+    <input type="text" style={{ height: "40px", borderColor:"rgba(53, 39, 68, 1)",margin:"20px",color:"black" }} placeholder=" Search job" onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }} />
       <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"8%" }}>
         
         <UserCard name={userName} />
 
         <Container sx={{}}>
-          {jobData.map(item=>(
+          {jobData.filter((val) => {
+              if (searchTerm === "") {
+                return val;
+              } else if (
+                val.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return val;
+              }
+            }).map(item=>(
               <JobCard
               jobTitle={item.jobTitle}
               company={item.company}
