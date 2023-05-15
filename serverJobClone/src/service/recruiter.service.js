@@ -34,7 +34,7 @@ async function findRecruiterCompany(email){
     const existingUser = await Recruiter.findOne({
         email
     })
-
+    console.log(existingUser.companyName);
     return existingUser.companyName;
 }
 

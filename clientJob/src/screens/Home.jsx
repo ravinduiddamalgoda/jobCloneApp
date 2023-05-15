@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "../Styles/Home.css"
+import "../Styles/Home.css";
+import logo from "../Images/nsbm.png"
+import job from "../Images/job.png"
+import search from"../Images/search.png"
+import pay from '../Images/pay.png'
+ import final from '../Images/final.jpeg'
 import { FaFacebook,FaYoutube,FaLinkedin,FaInstagram,FaRegBuilding,FaSearch,FaTrophy,FaGrin,FaDollarSign,FaGraduationCap} from 'react-icons/fa';
-export function Home(){
+export function HomePage(){
 
     return(
 
@@ -11,12 +16,13 @@ export function Home(){
 
         </div>
         <header>
-            <a href="#" class="logo"><img src={require('../Images/nsbm.png')} class="logo" /></a>
+            <a href="#" class="logo"><img src={logo} class="logo" /></a>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="/Final%20Project/Job%20Portal/About/about.html">About</a></li>
+                
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="#">CV Templates</a></li>
-                <li><a href="/Final%20Project/Job%20Portal/Contact/contactus.html">Contact Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
                 <li><a href="#">Login</a></li>
 
             </ul>
@@ -31,7 +37,7 @@ export function Home(){
                 </p>
             </div>
             <div class="imgbox">
-                <img src={require('../Images/job.png')} />
+                <img src={job} />
             </div>
         </div>
     </section>
@@ -88,7 +94,7 @@ export function Home(){
         <div class="col">
             <div class="gallery">
 
-                <img src={require('../Images/final.jpeg')} />
+                <img src={final} />
 
             </div>
 
@@ -112,7 +118,7 @@ export function Home(){
   
     <br />
         <div class="card1">
-            <img src={require('../Images/search.png')} />
+            <img src={search} />
             <div class="cardword">
                 <h2>Identify</h2><br />
                 <p>Find the best specialists<br />
@@ -121,7 +127,7 @@ export function Home(){
         </div>
 
         <div class="card1">
-            <img src={require('../Images/pay.png')} />
+            <img src={pay} />
             <div class="cardword">
                 <h2>Pay</h2><br />
                 <p>We provide quotes and immediately pair each<br /> applicant with the most qualified employers.</p>
@@ -129,7 +135,7 @@ export function Home(){
         </div>
 
         <div class="card1">
-            <img src={require('../Images/search.png')}/>
+             <img src={search}/>
             <div class="cardword">
                 <h2>Work</h2><br />
                 <p>Pay promptly for service that leaves<br /> you completely delighted.</p>
@@ -142,7 +148,7 @@ export function Home(){
     <br /><br /><br />
     <footer class="footer">
         <div class="footer-l">
-            <img src={require('../Images/nsbm.png')} />
+            <img src={logo} />
 
             <p class="footer-links">
                 <a href="#">Home</a>
@@ -203,4 +209,4 @@ export function Home(){
 
 
 }
-export default Home;
+// export default Home;

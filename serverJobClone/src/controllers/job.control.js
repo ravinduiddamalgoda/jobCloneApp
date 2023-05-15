@@ -5,12 +5,12 @@ import Job from '../models/jobApp.js'
 export  const addJob = async(req,res)=>{
 
     try{
-        const {recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,descripton} = req.body;
+        const {recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,description } = req.body;
         
-        const newJob = await jobService.registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,descripton);
+        const newJob = await jobService.registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,description);
         res.status(200).json(newJob);
     }catch(err){
-        res.status(400).send({ err: err });
+        res.status(400).send({ err: err.message });
     }
    
 

@@ -117,7 +117,7 @@ export function LoginPage(){
     };
     
     return (
-        <div style={{ width : '100%' , height:'100%' , margin: '0'}}>
+        <Box style={{ width : '100%' , height:'100%' , margin: '0'}}>
       <Box className={classes.root}>
         <Formik 
           initialValues={{
@@ -172,7 +172,7 @@ export function LoginPage(){
           }}
         </Formik>
       </Box>
-      </div>
+      </Box>
     );
   }
   

@@ -30,7 +30,7 @@ const jobSchema = new Schema({
         type: String,
     },
     company:String,
-    descripton: String,
+    description: String,
 })
 
 const Job =  mongoose.model('Job' , jobSchema);

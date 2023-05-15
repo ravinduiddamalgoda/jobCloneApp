@@ -1,7 +1,8 @@
 import Job from '../models/jobApp.js'
 import RecruiterService from './recruiter.service.js'
-async function registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill, descripton){
-    const companyName = RecruiterService.findRecruiterCompany(recuiterEmail);
+async function registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill, description){
+    const company = await RecruiterService.findRecruiterCompany(recuiterEmail);
+    // console.log(companyName);
     const newJob = new Job({
         recuiterEmail,
         jobTitle,
@@ -10,8 +11,8 @@ async function registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,positi
         feild,
         position,
         skill,
-        companyName,
-        descripton
+        company,
+        description
     });
     
     await newJob.save();
