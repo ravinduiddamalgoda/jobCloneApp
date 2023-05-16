@@ -6,7 +6,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../component/AuthProvider";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-import HeaderMain from "./header";
+import HeaderMain from "./NewHeader";
+//import HeaderMain from "./header";
 // import { Headerm } from "./header";
 
 const useStyles = makeStyles((theme) => ({
@@ -91,7 +92,12 @@ export function MainPageUser() {
     <Container sx={{display:'flex' , flexDirection:'row'}}>
     {/* <Headerm/> */}
     <HeaderMain/>
-    <TextField type="text" style={{ height: "40px", borderColor:"rgba(53, 39, 68, 1)",marginTop:"0%",color:"black" }} placeholder=" Search job" onChange={(event) => {
+    <TextField type="text" 
+      style={{ height:"3.5rem", 
+      marginTop:"2rem",
+      borderRadius:"1rem",
+      backgroundColor:"white",color:"black", }} 
+      placeholder=" Search job" onChange={(event) => {
             setSearchTerm(event.target.value);
           }} />
       <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"8%" }}>
