@@ -1,6 +1,6 @@
 import { CV_data } from "../component/CV";
 import { useContext, useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, useNavigate } from "react-router-dom";
 // import { makeStyles } from '@mui/styles';
 import { Typography, makeStyles } from "@material-ui/core";
 import { Box, Button, FormControl, FormHelperText, TextField , Container } from '@mui/material';
@@ -99,9 +99,65 @@ const useStyle = makeStyles((theme) => ({
 
 //   export const dataCVAdd = {}; 
   export function CvGenerationPage() {
+
+    // const cvData = {
+    //     name: 'John Doe',
+    //     education: [
+    //       {
+    //         degree: 'Bachelor of Science',
+    //         institution: 'University of Example',
+    //         year: '2020',
+    //         DegStatus: 'none'
+    //       },
+    //       // Add more education items if needed
+    //     ],
+    //     workExperience: [
+    //       {
+    //         position: 'Software Engineer',
+    //         company: 'Example Inc.',
+    //         duration: '2018 - Present',
+    //       },
+    //       // Add more work experience items if needed
+    //     ],
+    //     skills: ['JavaScript', 'React', 'CSS', 'HTML'],
+    //     contact: {
+    //       email: 'john.doe@example.com',
+    //       phone: '+1 123 456 7890',
+    //     },
+    //   };
+    const cvDataSet = {
+        name: '',
+        education: 
+          {
+            degree: '',
+            institution: '',
+            year: '',
+            DegStatus: ''
+          }
+          // Add more education items if needed
+        ,
+        workExperience: 
+          {
+            position: '',
+            company: '',
+            duration: '',
+          }
+          // Add more work experience items if needed
+        ,
+        skills: [],
+        contact: {
+          email: '',
+          phone: '',
+        }
+      };
+
+
+
     const classes = useStyle();
-    const [dataObj , setDataObj] = useState({});
+    const [dataObj , setDataObj] = useState({stat:"null"});
     const [linkBtn , setLinkBtn] = useState(true);
+    const [cvData , setCvData] = useState({});
+    const navigate = useNavigate();
     console.log(linkBtn);
     // const history = useHistory();
     // dataCVAdd = dataObj;
@@ -111,14 +167,43 @@ const useStyle = makeStyles((theme) => ({
 
         setDataObj(formData);
 
-        console.log(dataObj);
+        // console.log(dataObj);
         // console.log(linkBtn);
         // setLinkBtn(false);
         // console.log(linkBtn);
+
+        
+
+        if(formData.name != ""){
+
+            // console.log(dataObj);
+            cvDataSet.name = formData.name;
+            cvDataSet.education.degree = formData.degree;
+            cvDataSet.education.institution = formData.University;
+            cvDataSet.education.year = formData.year;
+            cvDataSet.education.DegStatus = formData.DegStatus;
+            cvDataSet.workExperience.company = formData.company;
+            cvDataSet.workExperience.duration = formData.duration;
+            cvDataSet.workExperience.position = formData.position;
+            cvDataSet.skills = formData.skill;
+            cvDataSet.contact.email = formData.Email;
+            cvDataSet.contact.phone = formData.telephone;
+            // console.log(cvDataSet);
+            setCvData(cvDataSet);
+            console.log(cvData);
+            setLinkBtn(!linkBtn)
+            // <Route path="/app/cv/link" render={() => <CV_data cvData={cvDataSet} />} />
+            // navigate('/app/cv/link');
+            // setLinkBtn(false);
+
+        }else{
+            alert("Re Enter Data or Press Submit Button Again!!..")
+        }
+
     }
 
 
-    if(linkBtn == true){
+    if(linkBtn){
         return (
             <>
 
@@ -335,6 +420,7 @@ const useStyle = makeStyles((theme) => ({
                                         sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
                                         Submit
                                     </Button>
+                                   
                                 </Grid>
                             </Grid>
 
@@ -343,8 +429,12 @@ const useStyle = makeStyles((theme) => ({
                               }}  
                           </Formik>
                       </Box>
-                      {/* <CV_data />         */}
-
+                      {
+                        
+                      }
+                           
+                              
+                        
                   </Container>
 
               </>
@@ -352,12 +442,16 @@ const useStyle = makeStyles((theme) => ({
     }
     else{
         return(
-            <Container>
-                <CV_data />  
-                <Button onClick={setLinkBtn(false)}>
+            <>
+             <Container>
+                {/* <CV_data />   */}
+                <CV_data cvData = {cvData} />   
+                <Button onClick={() => setLinkBtn(!linkBtn)}>
                     Generate Another
                 </Button>
              </Container>
+            </>
+           
     );
     }
 
