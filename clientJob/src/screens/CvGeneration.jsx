@@ -50,8 +50,18 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: "#F4F4F4",
       borderRadius: "5px",
       marginBottom: "2rem",
-      marginEnd:"2rem!important"
+      marginEnd:"2rem!important",
     },
+    formCtrl2: {
+        marginTop: "2rem !important",
+        padding: "20px",
+        backgroundColor: "#F4F4F4",
+        borderRadius: "5px",
+        marginBottom: "2rem",
+        marginEnd:"2rem!important",
+        fontSize:"1rem",
+        marginStart:"0.5rem"
+      },
     login: {
       fontFamily: "'Segoe UI', sans-serif",
       flex: "1",
@@ -63,7 +73,27 @@ const useStyle = makeStyles((theme) => ({
       marginRight: "auto",
     },
     btnAddSkill:{
-        background:'black'
+        background:'#017143',
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        marginStart:"2rem !important",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        color:"white"
+    },
+    btnAddSkill:{
+        background:'#017143',
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        marginStart:"2rem !important",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        color:"white",
+        transition: 'background-color 0.3s ease', 
+        '&:hover': {
+         background: '#1976d2', 
+  },
+        
     },
   }));
 
@@ -195,43 +225,43 @@ const useStyle = makeStyles((theme) => ({
 
                           <Typography variant="h6">Working Expierence (if your still fresh job seeker please enter No Experence)</Typography>
 
-                          <Grid container spacing={2}>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.position}
-                                          onChange={handleChange}
-                                          name="position"
-                                          label="position"
-                                          placeholder="position" />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.company}
-                                          onChange={handleChange}
-                                          name="company"
-                                          label="company"
-                                          placeholder="company"/>
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.duration}
-                                          onChange={handleChange}
-                                          name="duration"
-                                          label="duration"
-                                          placeholder="duration" />
-                                  </FormControl>     
-                              </Grid>
-                          </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.position}
+                                            onChange={handleChange}
+                                            name="position"
+                                            label="position"
+                                            placeholder="position" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.company}
+                                            onChange={handleChange}
+                                            name="company"
+                                            label="company"
+                                            placeholder="company"/>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.duration}
+                                            onChange={handleChange}
+                                            name="duration"
+                                            label="duration"
+                                            placeholder="duration" />
+                                    </FormControl>     
+                                </Grid>
+                            </Grid>
                           <Typography variant="h6"> Skills</Typography>
-                          <Grid item xs={12} sm={6}>
+                          <Grid container spacing={2}>
                           <FieldArray
                               name="skills"
                               render={arrayHelpers => (
@@ -239,7 +269,8 @@ const useStyle = makeStyles((theme) => ({
                                   {values.skills && values.skills.length > 0 ? (
                                   values.skills.map((skill, index) => (
                                       <div key={index}>
-                                      <Field name={`skill.${index}`} />
+                                      <Field name={`skill.${index}`} className={classes.formCtrl2}/>
+
                                       <Button
                                           className={classes.btnAddSkill}
                                           type="button"
@@ -254,13 +285,12 @@ const useStyle = makeStyles((theme) => ({
                                       >
                                           Remove
                                       </Button>
-
                                       </div>
                                   ))
                                   ) : (
                                   <Button type="button" onClick={() => arrayHelpers.push('')} className={classes.btnAddSkill}>
                                       {/* show this when user has removed all friends from the list */}
-                                      Add Your Skill
+                                      Add Your Skills
                                   </Button>
                                   )}
                                   {/* <div>
@@ -272,42 +302,41 @@ const useStyle = makeStyles((theme) => ({
                           </Grid>
                           <Typography variant="h6">Contact Details</Typography>
 
-                          <Grid container spacing={2}>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth >
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.telephone}
-                                          onChange={handleChange}
-                                          name="telephone"
-                                          label="Telephone Number"
-                                          placeholder="Telephone Number"
-                                      />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                  <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.Email}
-                                          onChange={handleChange}
-                                          name="Email"
-                                          label="Email"
-                                          placeholder="Email"
-                                      />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={2}>
-                                  <Button
-                                      onClick={() => handleSubmit()}
-
-                                      type="submit"
-                                      variant="contained"
-                                      sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
-                                      Submit
-                                  </Button>
-                              </Grid>
-                          </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth >
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.telephone}
+                                            onChange={handleChange}
+                                            name="telephone"
+                                            label="Telephone Number"
+                                            placeholder="Telephone Number"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                    <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.Email}
+                                            onChange={handleChange}
+                                            name="Email"
+                                            label="Email"
+                                            placeholder="Email"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Button
+                                        onClick={() => handleSubmit()}
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </Grid>
 
                                   </div>
                                   );
@@ -317,13 +346,6 @@ const useStyle = makeStyles((theme) => ({
                       {/* <CV_data />         */}
 
                   </Container>
-
-
-
-
-
-
-
 
               </>
           );
