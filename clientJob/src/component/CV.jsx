@@ -1,86 +1,59 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 
-// Define the CV data
-const cvData = {
-  name: 'John Doe',
-  education: [
-    {
-      degree: 'Bachelor of Science',
-      institution: 'University of Example',
-      year: '2020',
-      DegStatus: 'none'
-    },
-    // Add more education items if needed
-  ],
-  workExperience: [
-    {
-      position: 'Software Engineer',
-      company: 'Example Inc.',
-      duration: '2018 - Present',
-    },
-    // Add more work experience items if needed
-  ],
-  skills: ['JavaScript', 'React', 'CSS', 'HTML'],
-  contact: {
-    email: 'john.doe@example.com',
-    phone: '+1 123 456 7890',
-  },
-};
-
 // Create functional components for CV sections
-const EducationSection = () => (
+const EducationSection = ({ education }) => (
   <View>
     <Text style={styles.sectionTitle}>Education</Text>
-    {cvData.education.map((educationItem, index) => (
-      <View key={index} style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{educationItem.degree}</Text>
-        <Text>{educationItem.institution}</Text>
-        <Text>{educationItem.year}</Text>
-        <Text>{educationItem.DegStatus}</Text>
-      </View>
-    ))}
+    
+     
+        <Text style={styles.itemTitle}>{education.degree}</Text>
+        <Text>{education.institution}</Text>
+        <Text>{education.year}</Text>
+        <Text>{education.DegStatus}</Text>
+      
+    
   </View>
 );
 
-const WorkExperienceSection = () => (
+const WorkExperienceSection = ({ workExperience }) => (
   <View>
     <Text style={styles.sectionTitle}>Work Experience</Text>
-    {cvData.workExperience.map((workItem, index) => (
-      <View key={index} style={styles.itemContainer}>
-        <Text style={styles.itemTitle}>{workItem.position}</Text>
-        <Text>{workItem.company}</Text>
-        <Text>{workItem.duration}</Text>
-      </View>
-    ))}
+    
+      
+        <Text style={styles.itemTitle}>{workExperience.position}</Text>
+        <Text>{workExperience.company}</Text>
+        <Text>{workExperience.duration}</Text>
+      
+   
   </View>
 );
 
-const SkillsSection = () => (
+const SkillsSection = ({ skills }) => (
   <View>
     <Text style={styles.sectionTitle}>Skills</Text>
-    <Text>{cvData.skills.join(', ')}</Text>
+    <Text>{skills.join(', ')}</Text>
   </View>
 );
 
-const ContactSection = () => (
+const ContactSection = ({ contact }) => (
   <View>
     <Text style={styles.sectionTitle}>Contact</Text>
-    <Text>Email: {cvData.contact.email}</Text>
-    <Text>Phone: {cvData.contact.phone}</Text>
+    <Text>Email: {contact.email}</Text>
+    <Text>Phone: {contact.phone}</Text>
   </View>
 );
 
 // Create the CV component
-const CV = () => (
+const CV = ({ cvData }) => (
   <Document>
     <Page style={styles.page}>
       <View style={styles.container}>
         <Text style={styles.title}>{cvData.name}</Text>
-        <EducationSection />
-        <WorkExperienceSection />
-        <SkillsSection />
-        <ContactSection />
+        <EducationSection education={cvData.education} />
+        <WorkExperienceSection workExperience={cvData.workExperience} />
+        <SkillsSection skills={cvData.skills} />
+        <ContactSection contact={cvData.contact} />
       </View>
     </Page>
   </Document>
@@ -90,7 +63,6 @@ const CV = () => (
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
-    // padding: 30,
     backgroundColor: '#fff',
   },
   container: {
@@ -102,8 +74,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#333',
-    // textDecoration: 'underline',
-
   },
   sectionTitle: {
     fontSize: 18,
@@ -120,14 +90,12 @@ const styles = StyleSheet.create({
 });
 
 // Render the CV component and provide a download link
-export const CV_data = ({cvData}) => (
-    <div>
-    <PDFDownloadLink document={<CV cvData={cvData}/>} fileName="cv.pdf">
+export const CV_data = ({ cvData }) => (
+  <div>
+    <PDFDownloadLink document={<CV cvData={cvData} />} fileName="cv.pdf">
       {({ blob, url, loading }) =>
         loading ? 'Generating PDF...' : <a href={url} target="_blank">Download PDF</a>
       }
     </PDFDownloadLink>
   </div>
 );
-
-
