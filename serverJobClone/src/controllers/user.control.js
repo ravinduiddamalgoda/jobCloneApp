@@ -55,3 +55,15 @@ export const LoginUser = async (req, res) => {
 
   }
 };
+
+
+export const getAllUsers = async (req , res) => {
+
+    try{
+       const data = await UserService.getUsers(); 
+       res.status(200).send(data);
+    }catch(err){
+      res.status(400).send({ err: err.message});
+    }
+
+}

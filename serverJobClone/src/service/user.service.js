@@ -48,9 +48,20 @@ async function login(email , password){
 
 }
 
+async function getUsers (){
+    try{
+        const userData = await User.find();
+        return userData
+    }catch(err){
+        throw new Error ('Error');
+    }
+
+}
+
 
 export default {
     findUserByEmail,
     register,
-    login
+    login,
+    getUsers
 }

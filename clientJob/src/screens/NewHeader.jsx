@@ -21,20 +21,8 @@ export default function HeaderMain() {
           <img src={logo} className="logo" alt="Logo"  style={{height:"3rem", marginLeft:"0%"}}/>
         </a>
         <ul>
-          {/* <li>
-            <a href="/home">Home</a>
-          </li>
           <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/">CV Templates</a>
-          </li>
-          <li>
-            <a href="/contact">Contact Us</a>
-          </li> */}
-          <li>
-            <a href="/">Login</a>
+            <a href="/">Logout</a>
           </li>
         </ul>
       </header>

@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import { useSnackbar } from "notistack";
 import axios from "axios";
 import backImg from '../assets/images/22.jpg';
+import jobImg from '../assets/job.png'
+import Logo from '../assets/loginLogo.png'
 import { useNavigate } from "react-router-dom";
 import {
   FormHelperText,
@@ -33,11 +35,26 @@ const useStyles = makeStyles((theme) => ({
    },
   root: {
     // background: "white",
-    height: "100vh",
-    margin: "0 auto",
-    display: "flex",
-    padding: "2%",
-    opacity: '1',
+    ///////////////////
+    // height: "100vh",
+    // margin: "0 auto",
+    // display: "flex",
+    // padding: "2%",
+    // opacity: '1',
+    ////////////////////
+    background: "white",
+    // height: "100vh",
+    // margin: "0 auto",
+    marginTop: '2%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '5%',
+    paddingBottom: '2%',
+    height: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop:'2%',
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
     // backgroundImage: `url(${backImg})`,
     // backgroundPosition: 'center',
     // backgroundSize: 'cover',
@@ -61,15 +78,15 @@ const useStyles = makeStyles((theme) => ({
 
   },
 
-  backGroundImg: {
-    backgroundImage: `url(${backImg})`,
-    // backgroundPosition: 'inherit',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    // height: '100vh',
-    opacity: '0.9'
-  },
+  // backGroundImg: {
+  //   backgroundImage: `url(${backImg})`,
+  //   // backgroundPosition: 'inherit',
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  //   width: '100vw',
+  //   // height: '100vh',
+  //   opacity: '0.9'
+  // },
   iconImg: {
       
     width:'75px',
@@ -146,7 +163,10 @@ export function RegisterUser(){
           {({values, handleChange, handleSubmit, errors}) => {
             return (
               <>
-                <img src = {imgUser} className = {className.iconImg}/>
+                {/* <img src = {imgUser} className = {className.iconImg}/> */}
+                <div style={{ textAlign: 'left' }}>
+                  <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
+                </div>
                 <Typography variant="h3" className={className.registrationName}>Registration</Typography>
                 
                 <FormControl className={className.formCtrl} variant="outlined">
@@ -234,6 +254,9 @@ export function RegisterUser(){
             );
           }}
         </Formik>
+        <div style={{ marginTop:"3rem", textAlign: 'right' }}>
+          <img src={jobImg} style={{ width: '300px', height: '200px' }} />
+        </div>
       </Box>
     
     </div>
