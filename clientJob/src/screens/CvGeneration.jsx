@@ -446,7 +446,7 @@ const useStyle = makeStyles((theme) => ({
              <Container>
                 {/* <CV_data />   */}
                 <CV_data cvData = {cvData} />   
-                <Button onClick={() => setLinkBtn(!linkBtn)}>
+                <Button onClick={() => navigate}>
                     Generate Another
                 </Button>
              </Container>
