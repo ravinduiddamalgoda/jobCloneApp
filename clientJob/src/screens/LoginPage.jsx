@@ -6,6 +6,7 @@ import { Box, Button, FormControl, FormHelperText, TextField } from '@mui/materi
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { AuthContext } from '../component/AuthProvider';
+import jobImg from '../assets/job.png'
 // import { useSnackbar } from 'notistack';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
@@ -15,8 +16,8 @@ const useStyle = makeStyles((theme)=>({
     background: "white",
     // height: "100vh",
     // margin: "0 auto",
-    marginTop: '7%',
-    marginLeft: 'auto',
+    marginTop: '2%',
+    marginLeft: '30%',
     marginRight: 'auto',
     marginBottom: '5%',
     paddingBottom: '5%',
@@ -117,7 +118,7 @@ export function LoginPage(){
     };
     
     return (
-        <Box style={{ width : '100%' , height:'100%' , margin: '0'}}>
+      <Box style={{ width : '100%' , height:'100%' , margin: '0'}}>
       <Box className={classes.root}>
         <Formik 
           initialValues={{
@@ -172,6 +173,7 @@ export function LoginPage(){
           }}
         </Formik>
       </Box>
+      <img src={jobImg} style={{width:'300px' , textAlign:'left'}}/>
       </Box>
     );
   }

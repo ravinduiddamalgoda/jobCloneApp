@@ -1,11 +1,12 @@
 import { Box, makeStyles } from "@material-ui/core";
-import { Container, Typography } from "@mui/material";
+import { Container, TextField, Typography } from "@mui/material";
 import { JobCard } from "../component/JobCard";
 import { UserCard } from "../component/UserCard";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../component/AuthProvider";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import HeaderMain from "./header";
 // import { Headerm } from "./header";
 
 const useStyles = makeStyles((theme) => ({
@@ -87,9 +88,10 @@ export function MainPageUser() {
   var des =
     "This is greate job position who looking for a Intern in web developer title.";
   return (
-    <>
+    <Container sx={{display:'flex' , flexDirection:'row'}}>
     {/* <Headerm/> */}
-    <input type="text" style={{ height: "40px", borderColor:"rgba(53, 39, 68, 1)",margin:"20px",color:"black" }} placeholder=" Search job" onChange={(event) => {
+    <HeaderMain/>
+    <TextField type="text" style={{ height: "40px", borderColor:"rgba(53, 39, 68, 1)",marginTop:"0%",color:"black" }} placeholder=" Search job" onChange={(event) => {
             setSearchTerm(event.target.value);
           }} />
       <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"8%" }}>
@@ -115,6 +117,7 @@ export function MainPageUser() {
               position={item.position}
               skill={item.skill}
               description={item.description}
+              typeStat= {true}
            />
 
           ))}
@@ -161,7 +164,7 @@ export function MainPageUser() {
           /> */}
         </Container>
       </Container>
-    </>
+    </Container>
   );
 }
 

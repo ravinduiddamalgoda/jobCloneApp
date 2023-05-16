@@ -1,5 +1,5 @@
 import { Box, makeStyles } from "@material-ui/core";
-import { Card, Container, List, ListItem, Typography } from "@mui/material";
+import { Button, Card, Container, List, ListItem, Typography } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -92,8 +92,16 @@ export function JobCard(props) {
       </Container>
       <Typography variant="body2" className={classes.detail}>Job Time: {props.jobStatus}</Typography>
       <Typography variant="body2" className={classes.detail}>Job Type: {props.jobType}</Typography>
-      <Typography variant="body2" className={classes.detail}>Job Field: {props.field}</Typography>
+      <Typography variant="body2" className={classes.detail}>Job Field: {props.feild}</Typography>
       <Typography variant="body2" className={classes.detail}>Position: {props.position}</Typography>
+      {
+        props.typeStat === true ? (<Button>
+        Apply To Job
+        </Button>):(<Button>
+        
+        Delete Job
+        </Button>)
+      }
     </Card>
   );
 }

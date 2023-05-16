@@ -120,9 +120,9 @@ const styles = StyleSheet.create({
 });
 
 // Render the CV component and provide a download link
-export const CV_data = () => (
+export const CV_data = ({cvData}) => (
     <div>
-    <PDFDownloadLink document={<CV />} fileName="cv.pdf">
+    <PDFDownloadLink document={<CV cvData={cvData}/>} fileName="cv.pdf">
       {({ blob, url, loading }) =>
         loading ? 'Generating PDF...' : <a href={url} target="_blank">Download PDF</a>
       }
