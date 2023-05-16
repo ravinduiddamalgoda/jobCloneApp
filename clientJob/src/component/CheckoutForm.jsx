@@ -1,8 +1,8 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
-import { Box, makeStyles } from "@material-ui/core";
-// import "../App.css";
+import { Box, Button, makeStyles } from "@material-ui/core";
+import "../App.css";
 // const useStyles = makeStyles((theme) => ({
 //   boxStyle: {
 //     border: "1px solid",
@@ -65,15 +65,16 @@ export default function CheckoutForm() {
   };
 
   return (
+    <div id="payment">
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isProcessing || !stripe || !elements} id="submit" >
-        <span id="button-text">
+     
+      <Button disabled={isProcessing || !stripe || !elements} id="submit"> <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
-        </span>
-      </button>
+        </span></Button>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+    </div>
   );
 }

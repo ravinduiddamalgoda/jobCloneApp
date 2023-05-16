@@ -11,7 +11,7 @@
     border: #F6F9FC solid 1px;
     border-radius: var(--radius);
     padding: 20px;
-    margin: 20px 0;
+    margin: 20px;
     box-shadow: 0 30px 50px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%);
   }
   
@@ -27,7 +27,7 @@
   }
   
   
-body {
+  #payment{
     padding: 20px;
     font-family: 'Raleway';
     display: flex;
@@ -44,7 +44,7 @@ body {
     margin: 10px 0;
   }
   
-  button {
+  button-text {
     background-color: var(--accent-color);
   }
   

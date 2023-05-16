@@ -17,14 +17,14 @@ export function JobReMain(){
 
     useEffect(() => {
         try{
-            const currentUser = async () => {
+            const getJob = async () => {
                 var email = "kumar@gmail.com";
                 const res = await axios.get('http://localhost:3000/getJobByRecuiter');
                 console.log(res.data);
                 setJobData(res.data);
               }
           
-              currentUser();
+              getJob();
               
 
         }catch(err){

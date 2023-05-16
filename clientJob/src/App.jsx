@@ -15,6 +15,8 @@ import { CV_data } from './component/CV'
 import { HomePage } from './screens/Home'
 import { Contactus } from './screens/contactus'
 import { About } from './screens/about'
+import { AddJob } from './screens/addJobRe'
+import { RecruiterLoginPage } from './screens/JobReLogin'
 
 function ProtectedRoutes() {
   console.log("in protected route");
@@ -26,6 +28,7 @@ function ProtectedRoutes() {
         <Route path="cv" element={<CvGenerationPage/>} />
         <Route path="" element={<MainPageUser />} />
         <Route path="jobre" element = {<JobReMain />} />
+        <Route path="addjob" element = {<AddJob />} />
 
       </Routes>
     </AuthGuard>
@@ -38,6 +41,7 @@ function GuestRoutes() {
     <GuestGuard>
       <Routes>
         <Route path="login" element={<LoginPage />} />
+        <Route path="rlogin" element={<RecruiterLoginPage />} />
         <Route path="register" element={<RegisterUser />} />
         <Route path="home" element={<HomePage/>} />
         <Route path="/" element={<LoginPage />} />
