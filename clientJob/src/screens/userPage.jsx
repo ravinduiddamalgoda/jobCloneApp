@@ -1,5 +1,5 @@
 import { Box, makeStyles } from "@material-ui/core";
-import { Container, TextField, Typography } from "@mui/material";
+import { Container, TextField, Typography, backdropClasses } from "@mui/material";
 import { JobCard } from "../component/JobCard";
 import { UserCard } from "../component/UserCard";
 import { useContext, useEffect, useState } from "react";
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px",
     marginTop: "3%",
   },
+
 }));
 
 export function MainPageUser() {
@@ -89,17 +90,26 @@ export function MainPageUser() {
   var des =
     "This is greate job position who looking for a Intern in web developer title.";
   return (
+    <div>
+      <div style={{backgroundColor:"#017143", width:"100%"}} >
+    <HeaderMain/>
+      <TextField type="text" 
+        style={{ height:"3.5rem", 
+        width:"30%",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        marginLeft:"30%",
+        marginRight:"20%",
+        borderRadius:"1rem",
+        backgroundColor:"white",color:"black", }} 
+        placeholder=" Search job" onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }} />
+    </div>
     <Container sx={{display:'flex' , flexDirection:'row'}}>
     {/* <Headerm/> */}
-    <HeaderMain/>
-    <TextField type="text" 
-      style={{ height:"3.5rem", 
-      marginTop:"2rem",
-      borderRadius:"1rem",
-      backgroundColor:"white",color:"black", }} 
-      placeholder=" Search job" onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }} />
+    
+    
       <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"8%" }}>
         
         <UserCard name={userName} />
@@ -171,6 +181,7 @@ export function MainPageUser() {
         </Container>
       </Container>
     </Container>
+    </div>
   );
 }
 

@@ -10,19 +10,18 @@ export default function HeaderMain() {
       <div
         style={{
           position: "absolute",
-          bottom: "88%",
           left: "0",
           width: "100%",
-          height: "8rem",
+          height: "5rem",
           background: "#017143",
         }}
       ></div>
       <header>
-        <a href="#" className="logo">
-          <img src={logo} className="logo" alt="Logo" />
+        <a href="#" className="logo" >
+          <img src={logo} className="logo" alt="Logo"  style={{height:"3rem", marginLeft:"0%"}}/>
         </a>
         <ul>
-          <li>
+          {/* <li>
             <a href="/home">Home</a>
           </li>
           <li>
@@ -33,7 +32,7 @@ export default function HeaderMain() {
           </li>
           <li>
             <a href="/contact">Contact Us</a>
-          </li>
+          </li> */}
           <li>
             <a href="/">Login</a>
           </li>
