@@ -1,6 +1,6 @@
 import { CV_data } from "../component/CV";
 import { useContext, useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, useNavigate } from "react-router-dom";
 // import { makeStyles } from '@mui/styles';
 import { Typography, makeStyles } from "@material-ui/core";
 import { Box, Button, FormControl, FormHelperText, TextField , Container } from '@mui/material';
@@ -50,8 +50,18 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: "#F4F4F4",
       borderRadius: "5px",
       marginBottom: "2rem",
-      marginEnd:"2rem!important"
+      marginEnd:"2rem!important",
     },
+    formCtrl2: {
+        marginTop: "2rem !important",
+        padding: "20px",
+        backgroundColor: "#F4F4F4",
+        borderRadius: "5px",
+        marginBottom: "2rem",
+        marginEnd:"2rem!important",
+        fontSize:"1rem",
+        marginStart:"0.5rem"
+      },
     login: {
       fontFamily: "'Segoe UI', sans-serif",
       flex: "1",
@@ -63,15 +73,91 @@ const useStyle = makeStyles((theme) => ({
       marginRight: "auto",
     },
     btnAddSkill:{
-        background:'black'
+        background:'#017143',
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        marginStart:"2rem !important",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        color:"white"
+    },
+    btnAddSkill:{
+        background:'#017143',
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        marginStart:"2rem !important",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        color:"white",
+        transition: 'background-color 0.3s ease', 
+        '&:hover': {
+         background: '#1976d2', 
+  },
+        
     },
   }));
 
 //   export const dataCVAdd = {}; 
   export function CvGenerationPage() {
+
+    // const cvData = {
+    //     name: 'John Doe',
+    //     education: [
+    //       {
+    //         degree: 'Bachelor of Science',
+    //         institution: 'University of Example',
+    //         year: '2020',
+    //         DegStatus: 'none'
+    //       },
+    //       // Add more education items if needed
+    //     ],
+    //     workExperience: [
+    //       {
+    //         position: 'Software Engineer',
+    //         company: 'Example Inc.',
+    //         duration: '2018 - Present',
+    //       },
+    //       // Add more work experience items if needed
+    //     ],
+    //     skills: ['JavaScript', 'React', 'CSS', 'HTML'],
+    //     contact: {
+    //       email: 'john.doe@example.com',
+    //       phone: '+1 123 456 7890',
+    //     },
+    //   };
+    const cvDataSet = {
+        name: '',
+        education: 
+          {
+            degree: '',
+            institution: '',
+            year: '',
+            DegStatus: ''
+          }
+          // Add more education items if needed
+        ,
+        workExperience: 
+          {
+            position: '',
+            company: '',
+            duration: '',
+          }
+          // Add more work experience items if needed
+        ,
+        skills: [],
+        contact: {
+          email: '',
+          phone: '',
+        }
+      };
+
+
+
     const classes = useStyle();
-    const [dataObj , setDataObj] = useState({});
+    const [dataObj , setDataObj] = useState({stat:"null"});
     const [linkBtn , setLinkBtn] = useState(true);
+    const [cvData , setCvData] = useState({});
+    const navigate = useNavigate();
     console.log(linkBtn);
     // const history = useHistory();
     // dataCVAdd = dataObj;
@@ -81,14 +167,43 @@ const useStyle = makeStyles((theme) => ({
 
         setDataObj(formData);
 
-        console.log(dataObj);
+        // console.log(dataObj);
         // console.log(linkBtn);
         // setLinkBtn(false);
         // console.log(linkBtn);
+
+        
+
+        if(formData.name != ""){
+
+            // console.log(dataObj);
+            cvDataSet.name = formData.name;
+            cvDataSet.education.degree = formData.degree;
+            cvDataSet.education.institution = formData.University;
+            cvDataSet.education.year = formData.year;
+            cvDataSet.education.DegStatus = formData.DegStatus;
+            cvDataSet.workExperience.company = formData.company;
+            cvDataSet.workExperience.duration = formData.duration;
+            cvDataSet.workExperience.position = formData.position;
+            cvDataSet.skills = formData.skill;
+            cvDataSet.contact.email = formData.Email;
+            cvDataSet.contact.phone = formData.telephone;
+            // console.log(cvDataSet);
+            setCvData(cvDataSet);
+            console.log(cvData);
+            setLinkBtn(!linkBtn)
+            // <Route path="/app/cv/link" render={() => <CV_data cvData={cvDataSet} />} />
+            // navigate('/app/cv/link');
+            // setLinkBtn(false);
+
+        }else{
+            alert("Re Enter Data or Press Submit Button Again!!..")
+        }
+
     }
 
 
-    if(linkBtn == true){
+    if(linkBtn){
         return (
             <>
 
@@ -195,43 +310,43 @@ const useStyle = makeStyles((theme) => ({
 
                           <Typography variant="h6">Working Expierence (if your still fresh job seeker please enter No Experence)</Typography>
 
-                          <Grid container spacing={2}>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.position}
-                                          onChange={handleChange}
-                                          name="position"
-                                          label="position"
-                                          placeholder="position" />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.company}
-                                          onChange={handleChange}
-                                          name="company"
-                                          label="company"
-                                          placeholder="company"/>
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.duration}
-                                          onChange={handleChange}
-                                          name="duration"
-                                          label="duration"
-                                          placeholder="duration" />
-                                  </FormControl>     
-                              </Grid>
-                          </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.position}
+                                            onChange={handleChange}
+                                            name="position"
+                                            label="position"
+                                            placeholder="position" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.company}
+                                            onChange={handleChange}
+                                            name="company"
+                                            label="company"
+                                            placeholder="company"/>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.duration}
+                                            onChange={handleChange}
+                                            name="duration"
+                                            label="duration"
+                                            placeholder="duration" />
+                                    </FormControl>     
+                                </Grid>
+                            </Grid>
                           <Typography variant="h6"> Skills</Typography>
-                          <Grid item xs={12} sm={6}>
+                          <Grid container spacing={2}>
                           <FieldArray
                               name="skills"
                               render={arrayHelpers => (
@@ -239,7 +354,8 @@ const useStyle = makeStyles((theme) => ({
                                   {values.skills && values.skills.length > 0 ? (
                                   values.skills.map((skill, index) => (
                                       <div key={index}>
-                                      <Field name={`skill.${index}`} />
+                                      <Field name={`skill.${index}`} className={classes.formCtrl2}/>
+
                                       <Button
                                           className={classes.btnAddSkill}
                                           type="button"
@@ -254,13 +370,12 @@ const useStyle = makeStyles((theme) => ({
                                       >
                                           Remove
                                       </Button>
-
                                       </div>
                                   ))
                                   ) : (
                                   <Button type="button" onClick={() => arrayHelpers.push('')} className={classes.btnAddSkill}>
                                       {/* show this when user has removed all friends from the list */}
-                                      Add Your Skill
+                                      Add Your Skills
                                   </Button>
                                   )}
                                   {/* <div>
@@ -272,70 +387,71 @@ const useStyle = makeStyles((theme) => ({
                           </Grid>
                           <Typography variant="h6">Contact Details</Typography>
 
-                          <Grid container spacing={2}>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth >
-                                      <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.telephone}
-                                          onChange={handleChange}
-                                          name="telephone"
-                                          label="Telephone Number"
-                                          placeholder="Telephone Number"
-                                      />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={6}>
-                                  <FormControl className={classes.formCtrl} fullWidth>
-                                  <TextField
-                                           sx={{ width:"100%"}}
-                                          value={values.Email}
-                                          onChange={handleChange}
-                                          name="Email"
-                                          label="Email"
-                                          placeholder="Email"
-                                      />
-                                  </FormControl>
-                              </Grid>
-                              <Grid item xs={12} sm={2}>
-                                  <Button
-                                      onClick={() => handleSubmit()}
-
-                                      type="submit"
-                                      variant="contained"
-                                      sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
-                                      Submit
-                                  </Button>
-                              </Grid>
-                          </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth >
+                                        <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.telephone}
+                                            onChange={handleChange}
+                                            name="telephone"
+                                            label="Telephone Number"
+                                            placeholder="Telephone Number"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl className={classes.formCtrl} fullWidth>
+                                    <TextField
+                                            sx={{ width:"100%"}}
+                                            value={values.Email}
+                                            onChange={handleChange}
+                                            name="Email"
+                                            label="Email"
+                                            placeholder="Email"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Button
+                                        onClick={() => handleSubmit()}
+                                        type="submit"
+                                        variant="contained"
+                                        sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
+                                        Submit
+                                    </Button>
+                                   
+                                </Grid>
+                            </Grid>
 
                                   </div>
                                   );
                               }}  
                           </Formik>
                       </Box>
-                      {/* <CV_data />         */}
-
+                      {
+                        
+                      }
+                           
+                              
+                        
                   </Container>
-
-
-
-
-
-
-
 
               </>
           );
     }
     else{
         return(
-            <Container>
-                <CV_data />  
-                <Button onClick={setLinkBtn(false)}>
+            <>
+             <Container>
+                {/* <CV_data />   */}
+                <CV_data cvData = {cvData} />   
+                <Button onClick={() => setLinkBtn(!linkBtn)}>
                     Generate Another
                 </Button>
              </Container>
+            </>
+           
     );
     }
 

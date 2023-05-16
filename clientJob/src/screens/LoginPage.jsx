@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { AuthContext } from '../component/AuthProvider';
 import jobImg from '../assets/job.png'
+import Logo from '../assets/loginLogo.png'
 // import { useSnackbar } from 'notistack';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
@@ -17,19 +18,20 @@ const useStyle = makeStyles((theme)=>({
     // height: "100vh",
     // margin: "0 auto",
     marginTop: '2%',
-    marginLeft: '30%',
+    marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: '5%',
-    paddingBottom: '5%',
-    height: '60vh',
+    paddingBottom: '2%',
+    height: 'auto',
     display: 'flex',
     flexDirection: 'column',
     paddingTop:'2%',
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
     // paddingBottom: '0%', 
     // borderColor: 'black',
     // background: "white",
-    borderRadius: '6px',
-    borderBlockWidth :'thick',
+    // borderRadius: '10px',
+    // // borderBlockWidth :'thick',
     // border: 'solid',
     // borderTopColor: '#824AAF',
     // borderRightColor: '#824AAF',
@@ -55,7 +57,7 @@ const useStyle = makeStyles((theme)=>({
     fontFamily: '"Segoe UI"',
     // paddingLeft: '13%'
     flex: '1',
-    textAlign: 'center'
+    textAlign: 'center',
   }
 
 }))
@@ -118,7 +120,7 @@ export function LoginPage(){
     };
     
     return (
-      <Box style={{ width : '100%' , height:'100%' , margin: '0'}}>
+      <Box style={{ width : '100%' , height:'100%' , margin: 'auto auto'}}>
       <Box className={classes.root}>
         <Formik 
           initialValues={{
@@ -136,6 +138,9 @@ export function LoginPage(){
           {({values, handleChange, handleSubmit}) => {
             return (
               <>
+               <div style={{ textAlign: 'left' }}>
+                  <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
+                </div>
                 <Typography variant="h4" className={classes.login}>User Login</Typography>
               
                 <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
@@ -164,16 +169,21 @@ export function LoginPage(){
                   onClick={() => handleSubmit()}
                   type="submit"
                   variant="contained"
-                  style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}
+                  style={{marginTop: '20px' , marginLeft:'25px' , marginRight: '25px'}}
                 >
                   LOGIN
                 </Button>
-              </>
+               
+                <div style={{ marginTop:"3rem", textAlign: 'right' }}>
+                  <img src={jobImg} style={{ width: '300px', height: '200px' }} />
+                </div>
+             </>
             );
           }}
         </Formik>
+       
       </Box>
-      <img src={jobImg} style={{width:'300px' , textAlign:'left'}}/>
+   
       </Box>
     );
   }
