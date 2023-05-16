@@ -7,9 +7,10 @@ import { Box, Button, FormControl, FormHelperText, TextField , Container } from 
 import { Formik, Form, Field, FieldArray  } from 'formik';
 import { Grid } from "@material-ui/core";
 import * as Yup from 'yup';
+import { useSnackbar } from "notistack";
 import { AuthContext } from '../component/AuthProvider';
 // import { useSnackbar } from 'notistack';
-import { useSnackbar } from 'notistack';
+// import { useSnackbar } from 'notistack';
 import axios from 'axios';
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -72,13 +73,16 @@ const useStyle = makeStyles((theme) => ({
     const classes = useStyle();
     const [dataObj , setDataObj] = useState({});
     const [linkBtn , setLinkBtn] = useState(true);
-    console.log(linkBtn);
+    const [userName, setUserName] = useState("");
+    const token = useContext(AuthContext);
+    const { enqueueSnackbar } = useSnackbar();
+    // console.log(linkBtn);
     // const history = useHistory();
     // dataCVAdd = dataObj;
     const dataPass = async(formData) => {
 
         // console.log(formData);
-
+        formData.recruiterEmail = userName;
         setDataObj(formData);
 
         console.log(dataObj);
@@ -88,6 +92,31 @@ const useStyle = makeStyles((theme) => ({
     }
 
 
+    useEffect(() => {
+        try {
+          const currentUser = async () => {
+            const res = await axios
+              .get("http://localhost:3000/current-recruiter", {
+                headers: {
+                  Authorization: "Bearer " + token.token,
+                },
+              })
+              .then((res) => {
+              
+                setUserName(res.data.email);
+                console.log(res.data.email);
+              });
+          };
+    
+          if (token) {
+            resData = currentUser();
+          }
+        } catch (err) {
+          enqueueSnackbar(err, { variant: "error" });
+        }
+      }, [token]);
+
+   
   
         return (
             <>
@@ -98,7 +127,7 @@ const useStyle = makeStyles((theme) => ({
                   <Formik
                     initialValues={{
 
-                        recuiterEmail : "idde@gmail.com", 
+                         
                         jobTitle:"" ,
                         jobStatus : "" , 
                         jobType : "" ,   
@@ -120,19 +149,19 @@ const useStyle = makeStyles((theme) => ({
                           
 
                           <Grid container spacing={2}>
-                              <Grid item xs={12} sm={12}>
+                              {/* <Grid item xs={12} sm={12}>
                                   <FormControl className={classes.formCtrl} fullWidth>
                                       <TextField
                                           value={values.recuiterEmail}
                                           onChange={handleChange}
                                           name="recuiterEmail"
                                           label="Email"
-                                          disabled
+                                        //   disabled
                                           placeholder="Full Name"
                                           sx={{ width:"100%"}}
                                       />
                                   </FormControl>
-                              </Grid>
+                              </Grid> */}
                               <Grid item xs={12} sm={6}>
                                   <FormControl className={classes.formCtrl} fullWidth>
                                       {/* <TextField

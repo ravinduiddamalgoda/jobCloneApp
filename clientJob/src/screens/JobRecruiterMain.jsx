@@ -39,6 +39,7 @@ export function JobReMain(){
 
     return(<>
       
+      <a href="/job/addjob">add job</a>
       {/* <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/> */}
       {/* <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/> */}
         

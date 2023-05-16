@@ -99,7 +99,7 @@ export function RecruiterLoginPage(){
           // console.log("init in");
           await init();
         }
-        setTimeout(()=>{ navigate('/app');} , 500);
+        setTimeout(()=>{ navigate('/job');} , 500);
        
         // window.location.reload();
         // useEffect(() => {

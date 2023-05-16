@@ -27,12 +27,26 @@ function ProtectedRoutes() {
         <Route path="cv/link" element={<CV_data/>} />
         <Route path="cv" element={<CvGenerationPage/>} />
         <Route path="" element={<MainPageUser />} />
-        <Route path="jobre" element = {<JobReMain />} />
+        {/* <Route path="jobmain" element = {<JobReMain />} /> */}
+        <Route path="addjob" element = {<AddJob />} />
+        {/* <Route path="" element={<JobReMain />} /> */}
+      </Routes>
+    </AuthGuard>
+  );
+}
+
+function ProtectedRoutesJob() {
+  return (
+    <AuthGuard>
+      <Routes>
+        <Route path="" element={<JobReMain />} />
+        {/* <Route path="jobre" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
 
       </Routes>
     </AuthGuard>
   );
+
 }
 
 function GuestRoutes() {
@@ -63,6 +77,7 @@ function App() {
     <Routes>
       {/* <Route path="app/" element={<ProtectedRoutes />} /> */}
       <Route path="app/*" element={<ProtectedRoutes />} />
+      <Route path="job/*" element={<ProtectedRoutesJob />} />
       <Route path="*" element={<GuestRoutes />} />
       {/* <Route path="home" element={<HomePage/>} /> */}
      
