@@ -17,6 +17,8 @@ import { Contactus } from './screens/contactus'
 import { About } from './screens/about'
 import { AddJob } from './screens/addJobRe'
 import { RecruiterLoginPage } from './screens/JobReLogin'
+import { LoginPageAdmin } from './screens/adminLogin'
+import { AdminMain } from './screens/adminMain'
 
 function ProtectedRoutes() {
   console.log("in protected route");
@@ -30,6 +32,7 @@ function ProtectedRoutes() {
         {/* <Route path="jobmain" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
         {/* <Route path="" element={<JobReMain />} /> */}
+        <Route path="adminmain" element = {<AdminMain/>} />
       </Routes>
     </AuthGuard>
   );
@@ -42,6 +45,7 @@ function ProtectedRoutesJob() {
         <Route path="" element={<JobReMain />} />
         {/* <Route path="jobre" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
+        
 
       </Routes>
     </AuthGuard>
@@ -56,6 +60,7 @@ function GuestRoutes() {
       <Routes>
         <Route path="login" element={<LoginPage />} />
         <Route path="rlogin" element={<RecruiterLoginPage />} />
+        <Route path="adminlogin" element={<LoginPageAdmin />} />
         <Route path="register" element={<RegisterUser />} />
         <Route path="home" element={<HomePage/>} />
         <Route path="/" element={<LoginPage />} />
