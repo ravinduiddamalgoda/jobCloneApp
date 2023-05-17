@@ -7,8 +7,9 @@ import {
   ListItem,
   Typography,
 } from "@mui/material";
+import { Field, Formik } from "formik";
 import { useState } from "react";
-
+import { useSnackbar } from 'notistack';
 const useStyles = makeStyles((theme) => ({
   card: {
     borderRadius: "16px",
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       boxShadow: "0px 8px 30px rgba(0, 0, 0, 0.15)",
     },
-    marginTop: "4rem",
+    marginTop: "2rem",
   },
   titleContainer: {
     alignItems: "center",
@@ -37,6 +38,17 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       textDecoration: "underline",
     },
+  },
+  uploadCVTitle: {
+    color: "#017143",
+    fontWeight: "600",
+    marginRight: "8px",
+    marginBottom:'3%',
+    textDecoration: "none",
+    "&:hover": {
+      color: 'black',
+    },
+
   },
   jobTitle: {
     fontWeight: "600",
@@ -75,15 +87,51 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#017143",
     },
   },
+
+  applyBtn:{
+    color: "#fff",
+    fontWeight: "600",
+    marginRight: "30%",
+    marginLeft: '30%', 
+    marginBottom:'1%',
+    backgroundColor: '#017143',
+    // "&:hover": {
+    //   backgroundColor: '#61876E',
+    //   color: 'black'
+    // },
+
+  }
 }));
 
 export function JobCard(props) {
   const classes = useStyles();
   const [applyBtn , setApplyBtn] = useState(true);
+  const{enqueueSnackbar} = useSnackbar();
+
+  const sendFile = async (fromData) => {
+   
+    // const dataInForm = formData;
+    console.log(fromData);
+    
+   
+      enqueueSnackbar("Uploaded Successfully", { variant: 'success' });
+    
+    // setApplyBtn(!)
+    try {
+      
+    } catch (err) {
+      const error = err?.response?.data?.err || err?.message;
+      console.log(error);
+      enqueueSnackbar(error, { variant: 'error' });
+    }
+
+  }
 
   return (
     <Card className={classes.card}>
-      <Container className={classes.titleContainer}>
+      {applyBtn == true ? (
+      <>
+         <Container className={classes.titleContainer}>
         <a href={props.companyUrl} className={classes.company}>
           {props.company}
         </a>
@@ -120,10 +168,45 @@ export function JobCard(props) {
       {props.typeStat === true ? (
         <Button
           onClick={()=>{setApplyBtn(!applyBtn)}}
+          className={classes.applyBtn}
+          variant="contained"
         >Apply To Job</Button>
       ) : (
         <Button>Delete Job</Button>
       )}
+      
+      </>
+      ):(<>
+        
+        <Formik
+        initialValues={{file:null}}
+        onSubmit={sendFile}
+        >
+          {({values, handleChange, handleSubmit}) => {
+
+            return(
+              <>
+               <Typography variant="h5" className={classes.uploadCVTitle}>Upload Your CV</Typography>
+              <Field name="file" type="file" />
+
+
+              <Button
+                  onClick={() => handleSubmit()}
+                  type="submit"
+                  variant="contained"
+                  style={{marginTop: '20px' , marginLeft:'20%' , marginRight: '20%'}}
+                >
+                  Submit
+                </Button>
+              </>
+            );
+          }}
+
+
+        </Formik>
+
+      </>)}
+     
     </Card>
   );
 }

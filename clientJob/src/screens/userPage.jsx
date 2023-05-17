@@ -110,7 +110,7 @@ export function MainPageUser() {
     {/* <Headerm/> */}
     
     
-      <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"8%" }}>
+      <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"1%" }}>
         
         <UserCard name={userName} />
 

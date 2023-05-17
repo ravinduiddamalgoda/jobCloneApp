@@ -1,6 +1,6 @@
 import Applicant from '../models/applicant.js'
 
-export const addForJob= async(req,res) =>{
+export const addForJob = async(req,res) =>{
 
     try{
 

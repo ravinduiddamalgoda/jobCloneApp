@@ -21,9 +21,9 @@ export function HomePage(){
                 
                 <li><a href="/home">Home</a></li>
                 <li><a href="/about">About</a></li>
-                <li><a href="#">CV Templates</a></li>
+                <li><a href="/login">CV Templates</a></li>
                 <li><a href="/contact">Contact Us</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="/login">Login</a></li>
 
             </ul>
         </header>
@@ -134,13 +134,13 @@ export function HomePage(){
             </div>
         </div>
 
-        <div class="card1">
+        {/* <div class="card1">
              <img src={search}/>
             <div class="cardword">
                 <h2>Work</h2><br />
                 <p>Pay promptly for service that leaves<br /> you completely delighted.</p>
             </div>
-        </div>
+        </div> */}
     <br /><br />
 
 

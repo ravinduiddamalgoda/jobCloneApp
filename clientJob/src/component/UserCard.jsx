@@ -73,7 +73,7 @@ export function UserCard(props) {
           size="large"
           variant="contained"
           component={Link}
-          to="/app/cv"
+          to="cv/payment"
           sx={{ backgroundColor: "#017143" }}
         >
           Generate CV

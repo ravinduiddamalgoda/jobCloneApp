@@ -51,7 +51,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}/app/cv`,
       },
     });
 
@@ -69,11 +69,11 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
      
-      <Button disabled={isProcessing || !stripe || !elements} id="submit"> <span id="button-text">
+      <button disabled={isProcessing || !stripe || !elements} id="submit"> <span id="button-text" style={{color:'#017143' , maxWidth:'500px' , borderRadius: '2px'}}>
           {isProcessing ? "Processing ... " : "Pay now"}
-        </span></Button>
+        </span></button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div id="payment-message" style={{color: 'red'}}>{message}</div>}
     </form>
     </div>
   );

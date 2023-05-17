@@ -63,7 +63,7 @@ function GuestRoutes() {
         <Route path="adminlogin" element={<LoginPageAdmin />} />
         <Route path="register" element={<RegisterUser />} />
         <Route path="home" element={<HomePage/>} />
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="contact" element={<Contactus/>} />
         <Route path="about" element={<About/>} />
       </Routes>

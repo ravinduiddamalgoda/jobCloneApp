@@ -137,6 +137,7 @@ export function RegisterUser(){
       .required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(8 , 'Password must have atleast 8 characters'),
+    major: Yup.string().required()
     
   });
 
@@ -152,8 +153,7 @@ export function RegisterUser(){
             lname: "",
             email: "",
             password: "",
-            nic: "",
-            tp: "",
+            major:""
           }}
           
           validationSchema={SignupSchema}
@@ -230,16 +230,16 @@ export function RegisterUser(){
                 <FormControl className={className.formCtrl}>
                   <TextField
                     className={className.formCtrl1}
-                    value={values.nic}
-                    error={errors.nic && errors.nic?.length ? true : false}
+                    value={values.major}
                     onChange={handleChange}
+                    error={errors.major && errors.major?.length ? true : false}
                     name="major"
                     label="major"
                     placeholder="major"
                   />
                 </FormControl>
                 <FormHelperText style={{ color: 'red' }}>
-                  {errors.nic}
+                  {errors.major}
                 </FormHelperText>
 
                 <Button

@@ -45,7 +45,7 @@ export function AdminMain(){
         
     {
         jobData.map(data => (
-            <JobCard jobTitle={data.jobTitle} company="Axoten Innovation" jobStatus ={data.jobStatus} jobType = {data.jobType} feild = {data.feild} position = {data.position} skill = {data.skill} description = {des}/>
+            <JobCard jobTitle={data.jobTitle} company={data.company} jobStatus ={data.jobStatus} jobType = {data.jobType} feild = {data.feild} position = {data.position} skill = {data.skill} description = {des}/>
         ))
     }
     </>);

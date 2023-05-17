@@ -141,9 +141,9 @@ export function LoginPageAdmin(){
                <div style={{ textAlign: 'left' }}>
                   <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
                 </div>
-                <Typography variant="h4" className={classes.login}>User Login</Typography>
+                <Typography variant="h4" className={classes.login}>Admin Login</Typography>
               
-                <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
+                <FormControl className={classes.formCtrl} style={{marginTop: '2px' , marginLeft:'10px' , marginRight: '10px'}}>
                   <TextField
                     value={values.email}
                     onChange={handleChange}
@@ -154,7 +154,7 @@ export function LoginPageAdmin(){
                   />
                 </FormControl>
                 
-                <FormControl className={classes.formCtrl} style={{marginTop: '20px', marginLeft:'10px' , marginRight: '10px'}}>
+                <FormControl className={classes.formCtrl} style={{marginTop: '2px', marginLeft:'10px' , marginRight: '10px'}}>
                   <TextField
                     value={values.password}
                     onChange={handleChange}
@@ -174,7 +174,7 @@ export function LoginPageAdmin(){
                   LOGIN
                 </Button>
                
-                <div style={{ marginTop:"3rem", textAlign: 'right' }}>
+                <div style={{ marginTop:"2px", textAlign: 'right' }}>
                   <img src={jobImg} style={{ width: '300px', height: '200px' }} />
                 </div>
              </>
