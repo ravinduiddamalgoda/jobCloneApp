@@ -144,7 +144,7 @@ const useStyle = makeStyles((theme) => ({
                       return (
                         <div>
                           <Typography variant="h4" className={classes.login}>
-                            Add  New Job
+                            Post Job
                           </Typography>
                           
 
@@ -303,7 +303,7 @@ const useStyle = makeStyles((theme) => ({
                                       type="submit"
                                       variant="contained"
                                       sx={{marginTop: '20px' , backgroundColor:"#017143" , width:"100%"}}>
-                                      Submit
+                                      Post Job
                                   </Button>
                               </Grid>
 

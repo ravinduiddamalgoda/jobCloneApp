@@ -90,7 +90,7 @@ export function LoginPageAdmin(){
 
     const makeLogin = async (formData) => {
       try {
-        const res = await axios.post('http://localhost:3000/login', {
+        const res = await axios.post('http://localhost:3000/recruiter-login', {
           ...formData,
         });
         console.log(res.data);
@@ -102,7 +102,7 @@ export function LoginPageAdmin(){
           // console.log("init in");
           await init();
         }
-        setTimeout(()=>{ navigate('/app');} , 500);
+        setTimeout(()=>{ navigate('/job');} , 500);
        
         // window.location.reload();
         // useEffect(() => {

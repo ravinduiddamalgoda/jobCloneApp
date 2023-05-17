@@ -112,7 +112,7 @@ export function JobCard(props) {
    
     // const dataInForm = formData;
     console.log(fromData);
-    
+    setApplyBtn(!applyBtn);
    
       enqueueSnackbar("Uploaded Successfully", { variant: 'success' });
     

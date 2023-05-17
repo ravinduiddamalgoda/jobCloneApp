@@ -11,6 +11,7 @@ import { AuthContext } from '../component/AuthProvider';
 // import { useSnackbar } from 'notistack';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
+import HeaderMain from "./NewHeader";
 const useStyle = makeStyles((theme) => ({
     root: {
       backgroundColor: "#FFFFFF",
@@ -443,7 +444,8 @@ const useStyle = makeStyles((theme) => ({
     else{
         return(
             <>
-             <Container>
+             <HeaderMain />
+             <Container sx={{padding:'10%'}}>
                 {/* <CV_data />   */}
                 <CV_data cvData = {cvData} />   
                 <Button onClick={() => {setLinkBtn(!linkBtn)}}>
