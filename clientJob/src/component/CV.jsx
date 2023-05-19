@@ -1,92 +1,132 @@
-import React from 'react';
-import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+  import React from 'react';
+  import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 
-// Create functional components for CV sections
-const EducationSection = ({ education }) => (
-  <View>
-    <Text style={styles.sectionTitle}>Education</Text>
-    
-     
-        <Text style={styles.itemTitle}>{education.degree}</Text>
-        <Text>{education.institution}</Text>
-        <Text>{education.year}</Text>
-        <Text>{education.DegStatus}</Text>
-      
-    
+  // Create functional components for CV sections
+  const EducationSection = ({ education }) => (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.sectionTitle}>Education</Text>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemTitle}>{education.degree}</Text>
+      <Text style={styles.itemSubtitle}>-{education.institution}</Text>
+      <Text style={styles.itemSubtitle}>-{education.year}</Text>
+      <Text style={styles.itemSubtitle}>-{education.DegStatus}</Text>
+    </View>
   </View>
-);
+  );
 
-const WorkExperienceSection = ({ workExperience }) => (
-  <View>
-    <Text style={styles.sectionTitle}>Work Experience</Text>
-    
-      
-        <Text style={styles.itemTitle}>{workExperience.position}</Text>
-        <Text>{workExperience.company}</Text>
-        <Text>{workExperience.duration}</Text>
-      
-   
+  const WorkExperienceSection = ({ workExperience }) => (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.sectionTitle}>Work Experience</Text>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemTitle}>{workExperience.position}</Text>
+      <Text style={styles.itemSubtitle}>-{workExperience.company}</Text>
+      <Text style={styles.itemSubtitle}>-{workExperience.duration}</Text>
+    </View>
   </View>
-);
+  );
 
-const SkillsSection = ({ skills }) => (
-  <View>
-    <Text style={styles.sectionTitle}>Skills</Text>
-    <Text>{skills.join(', ')}</Text>
+  const SkillsSection = ({ skills }) => (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.sectionTitle}>Skills</Text>
+    <View style={styles.itemContainer}>
+    {skills.map((skill, index) => (
+    <Text key={index} style={styles.skill}>*{skill}</Text>
+    ))}
+    </View>
+    </View>
+  );
+
+  const ContactSection = ({ contact }) => (
+    <View style={styles.sectionContainer}>
+     <Text style={styles.sectionTitle}>Contact</Text>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemSubtitle}>Email: {contact.email}</Text>
+      <Text style={styles.itemSubtitle}>Phone: {contact.phone}</Text>
+    </View>
   </View>
-);
+  );
 
-const ContactSection = ({ contact }) => (
-  <View>
-    <Text style={styles.sectionTitle}>Contact</Text>
-    <Text>Email: {contact.email}</Text>
-    <Text>Phone: {contact.phone}</Text>
-  </View>
-);
-
-// Create the CV component
-const CV = ({ cvData }) => (
+  // Create the CV component
+  const CV = ({ cvData }) => (
   <Document>
     <Page style={styles.page}>
-      <View style={styles.container}>
-        <Text style={styles.title}>{cvData.name}</Text>
-        <EducationSection education={cvData.education} />
-        <WorkExperienceSection workExperience={cvData.workExperience} />
-        <SkillsSection skills={cvData.skills} />
-        <ContactSection contact={cvData.contact} />
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>{cvData.name}</Text>
+    <EducationSection education={cvData.education} />
+    <WorkExperienceSection workExperience={cvData.workExperience} />
+    <SkillsSection skills={cvData.skills} />
+    <ContactSection contact={cvData.contact} />
+    </View>
     </Page>
   </Document>
-);
+  );
 
-// Styling
-const styles = StyleSheet.create({
-  page: {
+  // Styling
+  const styles = StyleSheet.create({
+    page: {
     fontFamily: 'Helvetica',
-    backgroundColor: '#fff',
+    border: "1px solid black",
+    backgroundColor: '#FBFAF0',
   },
   container: {
     margin: '10%',
-    maxWidth: 600,
+    border: "1px solid black",
+    borderRadius: 10,
+    height:"90%",
+    padding: 3,
+    backgroundColor:'#FFFFFF'
+   
   },
   title: {
+    padding: 3,
+    backgroundColor: '#FFE5EC',
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#333',
+
+    textAlign: 'center', // Added textAlign property to center the title
+  },
+  sectionContainer: {
+    padding: 3,
+    marginBottom: 20,
+    marginLeft: 5
   },
   sectionTitle: {
+    padding: 3,
+    backgroundColor: '#f0f0f0',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#333',
+    marginLeft:"5rem"
   },
   itemContainer: {
+    padding: 3,
     marginBottom: 10,
+    marginLeft: 20, // Added marginLeft property to create an indent
   },
   itemTitle: {
+    padding: 3,
     fontWeight: 'bold',
+    fontSize: 16,
   },
+  itemSubtitle: {
+    padding: 3,
+    fontSize: 14,
+    color: '#555',
+    marginLeft:10,
+    backgroundColor: '#E5F3FD',
+    borderRadius: 10,
+  },
+  skill: {
+    backgroundColor: '#E5F6DF',
+    padding:3,
+    fontSize: 14,
+    color: '#333',
+    borderRadius: 10,
+    display: 'inline-block',
+},
 });
 
 // Render the CV component and provide a download link
