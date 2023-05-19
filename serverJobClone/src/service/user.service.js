@@ -1,3 +1,4 @@
+import Rating from "../models/rating.js";
 import User from "../models/user.js";
 import { createPasswordHash, signToken } from "./auth.service.js";
 
@@ -12,7 +13,7 @@ async function findUserByEmail(email){
 }
 
 
- async function register(fname , lname , email , password , major ){
+ async function register(fname , lname , email , password , major ,skills , level ,qualification ){
 
     const hash = await createPasswordHash(password);
     const newUser = new User({
@@ -21,12 +22,21 @@ async function findUserByEmail(email){
         email,
         password: hash, 
         major,
+        skills,
+        level,
+        qualification
     });
     
     await newUser.save();
     const userCpy =  JSON.parse(JSON.stringify(newUser));
-
-    //delete userCpy?.password
+    const newRate = new Rating({
+        email , 
+        rating:0,
+        major
+    });
+    await newRate.save();
+    
+    delete userCpy?.password
     return userCpy
 
 }

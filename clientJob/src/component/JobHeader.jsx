@@ -6,7 +6,10 @@ import logo from "../Images/nsbm.png";
 
 export default function HeaderJob() {
   return (
-    <div>
+    <div style={{
+      // marginBottom: '2%'
+      paddingBottom: '5%'
+    }}>
       <div
         style={{
           position: "absolute",
@@ -22,6 +25,7 @@ export default function HeaderJob() {
         </a>
         <ul>
           <li>
+          <a href="/job">Home</a>
             <a href="/job/addjob">Add Job</a>
             <a href="/">Logout</a>
           </li>

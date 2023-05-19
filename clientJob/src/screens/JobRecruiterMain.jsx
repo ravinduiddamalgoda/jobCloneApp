@@ -8,6 +8,7 @@ import axios from "axios";
 import { useSnackbar } from "notistack";
 import HeaderMain from "./NewHeader";
 import HeaderJob from "../component/JobHeader";
+import { StudentCard } from "../component/SearchCardStudent";
 
 
 
@@ -20,7 +21,7 @@ export function JobReMain(){
     useEffect(() => {
         try{
             const getJob = async () => {
-                var email = "kumar@gmail.com";
+                // var email = "kumar@gmail.com";
                 const res = await axios.get('http://localhost:3000/getJobByRecuiter');
                 console.log(res.data);
                 setJobData(res.data);
@@ -43,9 +44,9 @@ export function JobReMain(){
       <HeaderJob />
 
 
-      <Container sx={{display: 'flex' , flexDirection: 'row' , paddingTop: '3%'}}>
+      <Container sx={{display: 'flex' , flexDirection: 'row' , paddingTop: '1%' , width:'100%'}}>
 
-        <Box sx={{width: '200px'}}>
+        <Box >
         {/* <a href="/job/addjob">add job</a> */}
 
             {/* <JobCard jobTitle="Intern for Software Engineering" company="Axoten Innovation" jobStatus = "6 months" jobType = "Tempory" feild = "Software Engineering" position = "Intern" skill = {skills} description = {des}/> */}
@@ -57,6 +58,7 @@ export function JobReMain(){
                 ))
             }
         </Box>
+        <StudentCard/>
             
 
     </Container>

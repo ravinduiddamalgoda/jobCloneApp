@@ -25,7 +25,15 @@ export const RegisterRecruiter = async (req, res) => {
       const { companyName, recruiterName, email, password , companyMajor } = req.body;
   
       const existingUser = await recruiterService.findRecruiterByEmail(email);
-  
+      
+      const companyValid = await recruiterService.findByCompany(companyName);
+
+      if(companyValid){
+        return res.status(400).send({
+          err: 'Your company has already made registration.'
+        });
+      }
+
       if (existingUser) {
         return res.status(400).send({
           err: "User already Exits",

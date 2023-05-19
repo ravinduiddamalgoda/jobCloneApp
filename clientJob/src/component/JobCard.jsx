@@ -172,7 +172,12 @@ export function JobCard(props) {
           variant="contained"
         >Apply To Job</Button>
       ) : (
-        <Button>Delete Job</Button>
+        <Container>
+                {/* <Button color='error' variant='contained' sx={{marginRight: '5%' , marginTop: '3%'}}>Delete Job</Button> */}
+                
+                <Button  color='success' variant='contained' sx={{marginRight: '5%' , marginTop: '3%'}} >View Applicants</Button>
+        </Container>
+   
       )}
       
       </>

@@ -19,6 +19,8 @@ import { AddJob } from './screens/addJobRe'
 import { RecruiterLoginPage } from './screens/JobReLogin'
 import { LoginPageAdmin } from './screens/adminLogin'
 import { AdminMain } from './screens/adminMain'
+import { RegisterJobRe } from './screens/jobRegister'
+import { MainLoginPage } from './screens/newLogin'
 
 function ProtectedRoutes() {
   console.log("in protected route");
@@ -58,8 +60,9 @@ function GuestRoutes() {
   return (
     <GuestGuard>
       <Routes>
-        <Route path="login" element={<LoginPage />} />
+        <Route path="login" element={<MainLoginPage />} />
         <Route path="rlogin" element={<RecruiterLoginPage />} />
+        <Route path="jobregister" element={<RegisterJobRe />} />
         <Route path="adminlogin" element={<LoginPageAdmin />} />
         <Route path="register" element={<RegisterUser />} />
         <Route path="home" element={<HomePage/>} />

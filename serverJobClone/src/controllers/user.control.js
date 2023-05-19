@@ -1,5 +1,5 @@
 import UserService from "../service/user.service.js";
-
+import Rating from "../models/rating.js";
 export const CurrentUser = async (req ,res) => {
     const curntUser  = req.user;
     //console.log(currntUser);
@@ -25,17 +25,21 @@ export const CurrentUser = async (req ,res) => {
 
 export const RegisterUser = async (req, res) => {
   try {
-    const { fname, lname, email, password , major } = req.body;
+    const { fname, lname, email, password , major , skills , level , qualification } = req.body;
 
     const existingUser = await UserService.findUserByEmail(email);
+    const existingRating = await Rating.findOne({email});
 
+    if(existingRating){
+        return res.status(400).send({err: "user already rated"});
+    }
     if (existingUser) {
       return res.status(400).send({
         err: "User already Exits",
       });
     }
 
-    const user = await UserService.register(fname, lname, email, password , major);
+    const user = await UserService.register(fname, lname, email, password , major , skills , level , qualification );
     res.status(201).send(user);
   } catch (err) {
     res.status(400).send({ err: err.message });

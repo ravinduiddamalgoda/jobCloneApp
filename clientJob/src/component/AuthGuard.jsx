@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { AuthContext } from "./AuthProvider";
+import { AuthContext } from './AuthProvider';
 // import {}
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -59,36 +59,61 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 
 export function AuthGuard({ children }) {
-  let authPayload = useContext(AuthContext);
+  // let authPayload = useContext(AuthContext);
   const navigate = useNavigate();
-  setTimeout(()=>{
+//   setTimeout(()=>{
 
    
-      if (!authPayload || !authPayload.token) {
-        if (authPayload.token === null){
-          console.log("Login Auth");
-          console.log(authPayload.token);
-          return <Navigate to="/login" />;
-          // navigate('/login');
+//       if (!authPayload || !authPayload.token) {
+//         if (authPayload.token === null){
+//           console.log("Login Auth");
+//           console.log(authPayload.token);
+//           // return <Navigate to="/login" />;
+//           navigate('/login');
+//         }
+// }
+    
+    
+//   } ,100);
+
+        try{
+          let authPayload = useContext(AuthContext);
+          console.log(authPayload);
+          if (!authPayload || !authPayload.token || authPayload.token == null || authPayload.client == null) {
+             
+            // alert("no payloard");
+            navigate("/login");
+            //  return <Navigate to="/login" />;
+          }
+
+          return <>{children}</>;
+          
+        }catch(err){
+          alert(err);
+
         }
-}
-    
-    
-  } ,3000);
   // check if user exists
   
   return <>{children}</>;
 }
 
 export function GuestGuard({ children }) {
-  let authPayload = useContext(AuthContext);
+
+  try{
+    let authPayload = useContext(AuthContext);
   // check if user exists
-  if (authPayload && authPayload.token) {
+    if (authPayload && authPayload.token) {
     console.log("app Guest");
     // return <Navigate to={`{redirectPath}`} />;
     // return <Navigate to="/app" />;
   }
-  return <>{children}</>;
+    return <>{children}</>;
+
+  }catch(err){
+
+    alert(err);
+  }
+  
 }
 
 

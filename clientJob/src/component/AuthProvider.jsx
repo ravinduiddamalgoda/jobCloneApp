@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect , useCallback, createContext ,createElement , useState } from 'react';
+import React, { useEffect , useCallback, createContext ,createElement , useState } from 'react';
 
 
 const Initialvalue = {
@@ -10,18 +10,18 @@ const Initialvalue = {
   };
 
 
-export const AuthContext = createContext(Initialvalue);
+export const AuthContext = React.createContext(Initialvalue);
 
 export function AuthProviderComponent({ children }){
     const [loading , setLoading] =  useState(false);
     const [authPayload , setAuthPayload] = useState(Initialvalue);
 
-    const init = useCallback(async () => {
+    const init = useCallback( async () => {
         try{
             setLoading(true);
             // console.log("Initalize Method..");
             const fromStorage = await localStorage.getItem('token');
-            console.log(fromStorage);
+            // console.log(fromStorage);
             if(fromStorage){
                 const data = JSON.parse(fromStorage);
                 const axiosClient = axios.create({
@@ -63,7 +63,7 @@ export function AuthProviderComponent({ children }){
         init();
     }, [init]);
 
-    if (loading) return createElement('div', null, 'Loading....');
+    if (loading) return React.createElement('div', null, 'Loading....');
 
     // return createElement(AuthContext.Provider, { value: { ...authPayload, init } }, children);
     return <AuthContext.Provider value={{ ...authPayload, init }}>{children}</AuthContext.Provider>;

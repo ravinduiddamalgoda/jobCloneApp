@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '2%',
     height: 'auto',
     display: 'flex',
-    flexDirection: 'column',
+    // flexDirection: 'column',
     paddingTop:'2%',
     boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
     // backgroundImage: `url(${backImg})`,
@@ -99,6 +99,12 @@ const useStyles = makeStyles((theme) => ({
   registrationName:{
     paddingLeft: '20%',
     fontWeight: 700
+  },
+  subTopic:{
+    paddingLeft: '5%',
+    marginTop: '2%' ,
+    marginBottom: '1%' , 
+    
   }
   
 }));
@@ -106,14 +112,20 @@ const useStyles = makeStyles((theme) => ({
 export function RegisterUser(){
 
   const className = useStyles();
+  const [state , setState] = useState(true);
+  const [state2 , setState2] = useState(true);
+  const [state3 , setState3] = useState(true);
   // const className = useStyles();
   const {enqueueSnackbar} = useSnackbar();
   const navigate = useNavigate();
 
 
   const makeRegistration = async (formData) => {
+
+
+    console.log(formData);
     try {
-      const res = await axios.post('http://localhost:5000/register', {
+      const res = await axios.post('http://localhost:3000/register', {
         ...formData,
       });
       // console.log(res);
@@ -153,7 +165,10 @@ export function RegisterUser(){
             lname: "",
             email: "",
             password: "",
-            major:""
+            major:"",
+            skills: "" ,
+            level: "",
+            qualification: ""
           }}
           
           validationSchema={SignupSchema}
@@ -168,8 +183,10 @@ export function RegisterUser(){
                   <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
                 </div>
                 <Typography variant="h3" className={className.registrationName}>Registration</Typography>
-                
-                <FormControl className={className.formCtrl} variant="outlined">
+                {state == true ? (
+                <>
+                  <Typography variant="h6" className={className.subTopic}>User Details</Typography>
+                  <FormControl className={className.formCtrl} variant="outlined">
                   <TextField
                     
                     className={className.formCtrl1} 
@@ -198,17 +215,31 @@ export function RegisterUser(){
                 <FormHelperText style={{ color: 'red' }}>
                   {errors.lname}
                 </FormHelperText>
-                <FormControl className={className.formCtrl}>
-                  <TextField
-                    className={className.formCtrl1}
-                    error={errors.email && errors.email?.length ? true : false}
-                    value={values.email}
-                    onChange={handleChange}
-                    name="email"
-                    label="Email"
-                    placeholder="email"
-                  />
-                </FormControl>
+                <Button
+                  onClick={() => {setState(false); setState2(true);}}
+                  type="button"
+                  variant="contained"
+                  style={{marginTop: '20px' , marginLeft:'12%' , marginRight: '12%'}}
+                >
+                  Next
+                </Button>
+                
+                </>):(
+                <>
+                  {state2 == true ? (
+                  <>
+                  <Typography variant="h6" className={className.subTopic}>Login Details</Typography>
+                    <FormControl className={className.formCtrl}>
+                      <TextField
+                        className={className.formCtrl1}
+                        error={errors.email && errors.email?.length ? true : false}
+                        value={values.email}
+                        onChange={handleChange}
+                        name="email"
+                        label="Email"
+                        placeholder="email"
+                      />
+                  </FormControl>
                 <FormHelperText style={{ color: 'red' }}>
                   {errors.email}
                 </FormHelperText>
@@ -227,29 +258,97 @@ export function RegisterUser(){
                 <FormHelperText style={{ color: 'red' }}>
                   {errors.password}
                 </FormHelperText>
-                <FormControl className={className.formCtrl}>
-                  <TextField
-                    className={className.formCtrl1}
-                    value={values.major}
-                    onChange={handleChange}
-                    error={errors.major && errors.major?.length ? true : false}
-                    name="major"
-                    label="major"
-                    placeholder="major"
-                  />
-                </FormControl>
-                <FormHelperText style={{ color: 'red' }}>
-                  {errors.major}
-                </FormHelperText>
+                
 
                 <Button
-                  onClick={() => handleSubmit()}
-                  type="submit"
+                  onClick={() => {setState(false); setState2(false);}}
+                  type="button"
                   variant="contained"
-                  style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}
+                  style={{marginTop: '20px' , marginLeft:'12%' , marginRight: '12%'}}
                 >
-                  Submit
+                  Next
                 </Button>
+                  
+                  
+                  </>):(<>
+                  {state3 == true ? (<>
+                    <Typography variant="h6" className={className.subTopic}>Education Details</Typography>
+                    <FormControl className={className.formCtrl}>
+                      <TextField
+                        className={className.formCtrl1}
+                        value={values.major}
+                        onChange={handleChange}
+                        error={errors.major && errors.major?.length ? true : false}
+                        name="major"
+                        label="major"
+                        placeholder="major"
+                      />
+                  </FormControl>
+                  <FormHelperText style={{ color: 'red' }}>
+                    {errors.major}
+                  </FormHelperText>
+                  <FormControl className={className.formCtrl}>
+                      <TextField
+                        className={className.formCtrl1}
+                        value={values.skills}
+                        onChange={handleChange}
+                        // error={errors.major && errors.major?.length ? true : false}
+                        name="skills"
+                        label="Your major  Skills"
+                        placeholder="Skills"
+                      />
+                  </FormControl>
+                  <Button
+                  onClick={() => {setState(false); setState2(false); setState3(false);}}
+                  type="button"
+                  variant="contained"
+                  style={{marginTop: '20px' , marginLeft:'12%' , marginRight: '12%'}}
+                >
+                  Next
+                </Button>
+                  
+                  
+                  </>): (<>
+                    <Typography variant="h6" className={className.subTopic}>Education Details</Typography>
+                    <FormControl className={className.formCtrl}>
+                      <TextField
+                        className={className.formCtrl1}
+                        value={values.level}
+                        onChange={handleChange}
+                        // error={errors.major && errors.major?.length ? true : false}
+                        name="level"
+                        label="Specialized level"
+                        placeholder="Specialized level"
+                      />
+                  </FormControl>
+                  {/* <FormHelperText style={{ color: 'red' }}>
+                    {errors.major}
+                  </FormHelperText> */}
+                  <FormControl className={className.formCtrl}>
+                      <TextField
+                        className={className.formCtrl1}
+                        value={values.qualification}
+                        onChange={handleChange}
+                        multiline
+                        maxRows={4}
+                        // error={errors.major && errors.major?.length ? true : false}
+                        name="qualification"
+                        label="Your Qualifications"
+                        placeholder="Skills"
+                      />
+                  </FormControl>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    type="submit"
+                    variant="contained"
+                    style={{marginTop: '20px' , marginLeft:'25px' , marginRight: '25px' , backgroundColor: '#017143'}}
+                >
+                  Sign In
+                </Button> 
+                  </>)}
+                  </>)}                
+                </>)}
+                
               </>
             );
           }}

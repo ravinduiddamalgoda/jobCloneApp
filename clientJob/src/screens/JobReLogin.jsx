@@ -15,20 +15,20 @@ const useStyle = makeStyles((theme)=>({
     background: "white",
     // height: "100vh",
     // margin: "0 auto",
-    marginTop: '7%',
+    // marginTop: '7%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '5%',
-    paddingBottom: '5%',
-    height: '60vh',
+    // marginBottom: '5%',
+    // paddingBottom: '20%',
+    // height: '60vh',
     display: 'flex',
     flexDirection: 'column',
-    paddingTop:'2%',
+    // paddingTop:'2%',
     // paddingBottom: '0%', 
     // borderColor: 'black',
     // background: "white",
-    borderRadius: '6px',
-    borderBlockWidth :'thick',
+    // borderRadius: '6px',
+    // borderBlockWidth :'thick',
     // border: 'solid',
     // borderTopColor: '#824AAF',
     // borderRightColor: '#824AAF',
@@ -36,7 +36,7 @@ const useStyle = makeStyles((theme)=>({
     // borderBottomColor: '#824AAF',
 
     [theme.breakpoints.up('900')]: {
-      width: '30%',
+      width: '50%',
     },
     [theme.breakpoints.down('900')]: {
       width: '60%',
@@ -117,61 +117,64 @@ export function RecruiterLoginPage(){
     };
     
     return (
-        <div style={{ width : '100%' , height:'100%' , margin: '0'}}>
-      <Box className={classes.root}>
-        <Formik 
-          initialValues={{
-            email: "",
-            password: "",
-          }}
-          
-          validationSchema={Yup.object().shape({
-            email: Yup.string().email('Provide an valid email').required(),
-            password: Yup.string().required(),
-          })}
-          onSubmit = {makeLogin}
+      <div style={{ width : '100%' , height:'100%' , margin: '0'}}>
+        <Box className={classes.root}>
+          <Formik 
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            
+            validationSchema={Yup.object().shape({
+              email: Yup.string().email('Provide an valid email').required(),
+              password: Yup.string().required(),
+            })}
+            onSubmit = {makeLogin}
 
-        >
-          {({values, handleChange, handleSubmit}) => {
-            return (
-              <>
-                <Typography variant="h3" className={classes.login}>Job Recruiter Login</Typography>
-              
-                <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
-                  <TextField
-                    value={values.email}
-                    onChange={handleChange}
-                    name="email"
-                    label="Email"
-                    placeholder="email"
-                    
-                  />
-                </FormControl>
+          >
+            {({values, handleChange, handleSubmit}) => {
+              return (
+                <>
+                  <Typography variant="h4" className={classes.login}>Job Recruiter Login</Typography>
                 
-                <FormControl className={classes.formCtrl} style={{marginTop: '20px', marginLeft:'10px' , marginRight: '10px'}}>
-                  <TextField
-                    value={values.password}
-                    onChange={handleChange}
-                    name="password"
-                    label="Password"
-                    type={"password"}
-                    placeholder="password"
-                  />
-                </FormControl>
+                  <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
+                    <TextField
+                      value={values.email}
+                      onChange={handleChange}
+                      name="email"
+                      label="Email"
+                      placeholder="email"
+                      
+                    />
+                  </FormControl>
+                  
+                  <FormControl className={classes.formCtrl} style={{marginTop: '20px', marginLeft:'10px' , marginRight: '10px'}}>
+                    <TextField
+                      value={values.password}
+                      onChange={handleChange}
+                      name="password"
+                      label="Password"
+                      type={"password"}
+                      placeholder="password"
+                    />
+                  </FormControl>
 
-                <Button
-                  onClick={() => handleSubmit()}
-                  type="submit"
-                  variant="contained"
-                  style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}
-                >
-                  LOGIN
-                </Button>
-              </>
-            );
-          }}
-        </Formik>
-      </Box>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    type="submit"
+                    variant="contained"
+                    style={{marginTop: '20px' , marginLeft:'25px' , marginRight: '25px'}}
+                  >
+                    LOGIN
+                  </Button>
+                </>
+              );
+            }}
+          </Formik>
+          <Link to="/jobregister" >
+            <Typography style ={{marginLeft: '27%', color: '#2691D9' , textDecoration: 'none' , paddingTop: '2%'}}>New Recruiter ? Click To register</Typography>
+          </Link>
+        </Box>
       </div>
     );
   }

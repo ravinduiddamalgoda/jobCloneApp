@@ -14,7 +14,7 @@ userRouter.post('/register' , validate([
 
 userRouter.post('/login' , LoginUser);
 
-userRouter.get('/getallusers' , authGuard , getAllUsers);
+userRouter.get('/getallusers' , getAllUsers);
  
 
 

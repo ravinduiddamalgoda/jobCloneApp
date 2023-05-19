@@ -15,6 +15,18 @@ const userSchema =  new Schema({
     major: {
         required: true,
         type: String
+    },
+    skills: {
+        required: true,
+        type: String
+    } ,
+    level:{
+        required: true,
+        type: String
+    },
+    qualification:{
+        required: true,
+        type: String 
     }
    
 });

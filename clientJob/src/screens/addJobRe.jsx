@@ -12,6 +12,7 @@ import { AuthContext } from '../component/AuthProvider';
 // import { useSnackbar } from 'notistack';
 // import { useSnackbar } from 'notistack';
 import axios from 'axios';
+import HeaderJob from "../component/JobHeader";
 const useStyle = makeStyles((theme) => ({
     root: {
       backgroundColor: "#FFFFFF",
@@ -51,8 +52,18 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: "#F4F4F4",
       borderRadius: "5px",
       marginBottom: "2rem",
-      marginEnd:"2rem!important"
+      marginEnd:"2rem!important",
     },
+    formCtrl2: {
+        marginTop: "2rem !important",
+        padding: "20px",
+        backgroundColor: "#F4F4F4",
+        borderRadius: "5px",
+        marginBottom: "2rem",
+        marginEnd:"2rem!important",
+        fontSize:"1rem",
+        marginStart:"0.5rem"
+      },
     login: {
       fontFamily: "'Segoe UI', sans-serif",
       flex: "1",
@@ -63,8 +74,28 @@ const useStyle = makeStyles((theme) => ({
       marginLeft: "auto",
       marginRight: "auto",
     },
+    // btnAddSkill:{
+    //     background:'#017143',
+    //     paddingLeft:"2rem",
+    //     paddingRight:"2rem",
+    //     marginStart:"2rem !important",
+    //     marginTop:"1rem",
+    //     marginBottom:"1rem",
+    //     color:"white"
+    // },
     btnAddSkill:{
-        background:'black'
+        background:'#017143',
+        paddingLeft:"2rem",
+        paddingRight:"2rem",
+        marginStart:"2rem !important",
+        marginTop:"1rem",
+        marginBottom:"1rem",
+        color:"white",
+        transition: 'background-color 0.3s ease', 
+        '&:hover': {
+         background: '#1976d2', 
+  },
+        
     },
   }));
 
@@ -76,6 +107,7 @@ const useStyle = makeStyles((theme) => ({
     const [userName, setUserName] = useState("");
     const token = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
+    
     // console.log(linkBtn);
     // const history = useHistory();
     // dataCVAdd = dataObj;
@@ -92,29 +124,65 @@ const useStyle = makeStyles((theme) => ({
     }
 
 
-    useEffect(() => {
-        try {
-          const currentUser = async () => {
-            const res = await axios
-              .get("http://localhost:3000/current-recruiter", {
-                headers: {
-                  Authorization: "Bearer " + token.token,
-                },
-              })
-              .then((res) => {
+    // useEffect(() => {
+    //     try {
+    //       const currentUser = async () => {
+    //         const res = await axios
+    //           .get("http://localhost:3000/current-recruiter", {
+    //             headers: {
+    //               Authorization: "Bearer " + token.token,
+    //             },
+    //           })
+    //           .then((res) => {
               
-                setUserName(res.data.email);
-                console.log(res.data.email);
-              });
-          };
+    //             setUserName(res.data.email);
+    //             console.log(res.data.email);
+    //           });
+    //       };
     
-          if (token) {
-            resData = currentUser();
+    //       if (token) {
+    //         resData = currentUser();
+    //       }
+    //     } catch (err) {
+    //       // enqueueSnackbar(err, { variant: "error" });
+    //     }
+    //   }, [token]);
+
+
+    useEffect(() => {
+      try {
+        const currentUser = async () => {
+          try {
+            const response = await fetch("http://localhost:3000/current-recruiter", {
+              headers: {
+                Authorization: "Bearer " + token.token,
+              },
+            });
+    
+            if (response.ok) {
+              const data = await response.json();
+              setUserName(data.email);
+              console.log(data.email);
+              enqueueSnackbar("Data Got Success", { variant: "success" });
+
+            } else {
+              throw new Error("Request failed with status: " + response.status);
+            }
+          } catch (error) {
+            // Handle error
+            console.error(error);
+            enqueueSnackbar(error.message, { variant: "error" });
           }
-        } catch (err) {
-          enqueueSnackbar(err, { variant: "error" });
+        };
+    
+        if (token) {
+          currentUser();
         }
-      }, [token]);
+      } catch (err) {
+        // enqueueSnackbar(err, { variant: "error" });
+      }
+    }, [token]);
+    
 
    
   
@@ -123,6 +191,7 @@ const useStyle = makeStyles((theme) => ({
 
 
             <Container>
+              <HeaderJob/>
                 <Box className={classes.root}>
                   <Formik
                     initialValues={{
@@ -241,9 +310,10 @@ const useStyle = makeStyles((theme) => ({
                               render={arrayHelpers => (
                               <div>
                                   {values.skill && values.skill.length > 0 ? (
-                                  values.skill.map((skills, index) => (
+                                  values.skill.map((skill, index) => (
                                       <div key={index}>
-                                      <Field name={`skills.${index}`} />
+                                      <Field name={`skill.${index}`} className={classes.formCtrl2}/>
+
                                       <Button
                                           className={classes.btnAddSkill}
                                           type="button"
@@ -258,15 +328,13 @@ const useStyle = makeStyles((theme) => ({
                                       >
                                           Remove
                                       </Button>
-
                                       </div>
                                   ))
                                   ) : (
-                                  <Button type="button" onClick={() => arrayHelpers.push('')} className={classes.btnAddSkill}>
+                                  <button type="button" onClick={() => arrayHelpers.push('')} className={classes.btnAddSkill}>
                                       {/* show this when user has removed all friends from the list */}
-                                      Add Your Skill
-                                  </Button>
-                                  
+                                      Add Your Skills
+                                  </button>
                                   )}
                                   {/* <div>
                                       <button type="submit">Submit</button>

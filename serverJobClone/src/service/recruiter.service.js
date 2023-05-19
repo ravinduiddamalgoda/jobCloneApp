@@ -38,6 +38,13 @@ async function findRecruiterCompany(email){
     return existingUser.companyName;
 }
 
+async function findByCompany(company) {
+    const existingUser = await Recruiter.findOne({companyName: company});
+
+    // console.log(existingUser);
+    return existingUser;
+}
+
 async function loginRecruiter(email ,password){
     const acc = await Recruiter.findOne({ email})
 
@@ -58,5 +65,6 @@ export default {
     register,
     findRecruiterByEmail,
     loginRecruiter,
-    findRecruiterCompany
+    findRecruiterCompany,
+    findByCompany
 }

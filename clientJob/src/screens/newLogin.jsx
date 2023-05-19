@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, Navigate, useNavigate } from "react-router-dom";
 // import { makeStyles } from '@mui/styles';
 import { Typography, makeStyles } from "@material-ui/core";
-import { Box, Button, FormControl, FormHelperText, TextField } from '@mui/material';
+import { Box, Button, Container, FormControl, FormHelperText, TextField } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { AuthContext } from '../component/AuthProvider';
@@ -11,22 +11,24 @@ import Logo from '../assets/loginLogo.png'
 // import { useSnackbar } from 'notistack';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
+import { LoginPage } from './LoginPage';
+import { RecruiterLoginPage } from './JobReLogin';
 
 const useStyle = makeStyles((theme)=>({
   root: {
     background: "white",
     // height: "100vh",
     // margin: "0 auto",
-    // marginTop: '2%',
+    marginTop: '2%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    // marginBottom: '5%',
-    // paddingBottom: '2%',
+    marginBottom: '5%',
+    paddingBottom: '2%',
     height: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    // paddingTop:'2%',
-    // boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+    paddingTop:'2%',
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
     // paddingBottom: '0%', 
     // borderColor: 'black',
     // background: "white",
@@ -39,7 +41,43 @@ const useStyle = makeStyles((theme)=>({
     // borderBottomColor: '#824AAF',
 
     [theme.breakpoints.up('900')]: {
-      width: '50%',
+      width: '60%',
+    },
+    [theme.breakpoints.down('900')]: {
+      width: '60%',
+    },
+    [theme.breakpoints.down('600')]: {
+      width: '95%',
+    },
+
+  },
+  rootIn: {
+    background: "white",
+    // height: "100vh",
+    // margin: "0 auto",
+    marginTop: '2%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '5%',
+    paddingBottom: '2%',
+    height: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop:'2%',
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+    // paddingBottom: '0%', 
+    // borderColor: 'black',
+    // background: "white",
+    // borderRadius: '10px',
+    // // borderBlockWidth :'thick',
+    // border: 'solid',
+    // borderTopColor: '#824AAF',
+    // borderRightColor: '#824AAF',
+    // borderLeftColor: '#824AAF',
+    // borderBottomColor: '#824AAF',
+
+    [theme.breakpoints.up('900')]: {
+      width: '60%',
     },
     [theme.breakpoints.down('900')]: {
       width: '60%',
@@ -75,7 +113,10 @@ const useStyle = makeStyles((theme)=>({
 //     },
 //   });
 
-export function LoginPage(){
+export function MainLoginPage(){
+
+    const [updateBtn , setUpdateBtn] = useState(true);
+    const [updateRe , setUpdateRe] = useState(false);
     const classes = useStyle();
     // let{ init } = useContext(AuthContext);
     let { init } = useContext(AuthContext);
@@ -120,9 +161,38 @@ export function LoginPage(){
     };
     
     return (
-      <Box style={{ width : '100%' , height:'100%' , margin: 'auto auto'}}>
       <Box className={classes.root}>
-        <Formik 
+        <Container sx={{display: 'flex' ,  flexDirection: 'row'}}>
+            <Box style={{ textAlign: 'left' }}>
+                <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
+            </Box>
+            
+        </Container>
+        <Box sx={{textAlign: 'center'}} > 
+                <Button
+                size = 'large'
+                variant='contained'
+                color= 'success'
+                sx={{marginBottom:'1%' , marginRight:'2%'}}
+                onClick={()=>{
+                    
+                    setUpdateBtn(true);
+                    // setUpdateRe(!updateRe);
+                }}
+                >Login As User</Button>
+                <Button
+                variant='contained'
+                color= 'success'
+                size = 'large'
+                sx={{marginBottom:'1%' , marginRight:'4%' , marginLeft:'3%'}}
+                onClick={()=>{setUpdateBtn(false);
+                    // setUpdateRe(!updateRe);
+                }}
+                >Login As Job Recruiter</Button>
+            </Box>
+
+      
+        {/* <Formik 
           initialValues={{
             email: "",
             password: "",
@@ -138,10 +208,8 @@ export function LoginPage(){
           {({values, handleChange, handleSubmit}) => {
             return (
               <>
-               {/* <div style={{ textAlign: 'left' }}>
-                  <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
-                </div> */}
-                <Typography variant="h4" className={classes.login}>User Login</Typography>
+               
+                <Typography variant="h4" className={classes.login}>Main Login</Typography>
               
                 <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
                   <TextField
@@ -174,19 +242,29 @@ export function LoginPage(){
                   LOGIN
                 </Button>
                
-                {/* <div style={{ marginTop:"3rem", textAlign: 'right' }}>
-                  <img src={jobImg} style={{ width: '300px', height: '200px' }} />
-                </div> */}
-               
+              
              </>
             );
           }}
-        </Formik>
-        <Link to="/register" >
-          <Typography style ={{marginLeft: '27%', color: '#2691D9' , textDecoration: 'none' , paddingTop: '2%'}}>New User ? Click To register</Typography>
-        </Link>
-      </Box>
-   
+        </Formik> */}
+        {/* <LoginPage/> */}
+        {/* {updateBtn == true ? (<>
+            <LoginPage />
+        
+        </>):(<>
+            <RecruiterLoginPage />
+        </>)
+
+        }
+        */}
+        {updateBtn== true  ? (<> <LoginPage /> </>):(<> <RecruiterLoginPage /></>)
+           
+        }
+
+      
+      <div style={{ marginTop:"3rem", textAlign: 'right' }}>
+                  <img src={jobImg} style={{ width: '300px', height: '200px' }} />
+                </div>
       </Box>
     );
   }
