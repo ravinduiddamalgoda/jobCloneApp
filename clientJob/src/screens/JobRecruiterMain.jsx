@@ -22,7 +22,7 @@ export function JobReMain(){
         try{
             const getJob = async () => {
                 // var email = "kumar@gmail.com";
-                const res = await axios.get('http://localhost:3000/getJobByRecuiter');
+                const res = await axios.get('http://localhost:3000/getJobByRecuiter/kumar@gmail.com');
                 console.log(res.data);
                 setJobData(res.data);
               }
