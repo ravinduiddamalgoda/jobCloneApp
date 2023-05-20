@@ -44,7 +44,7 @@ export function JobReMain(){
       <HeaderJob />
 
 
-      <Container sx={{display: 'flex' , flexDirection: 'row' , paddingTop: '1%' , width:'100%'}}>
+    <Container sx={{display: 'flex' , flexDirection: 'row' , paddingTop: '1%' , width:'100%'}}>
 
         <Box >
         {/* <a href="/job/addjob">add job</a> */}

@@ -115,11 +115,12 @@ export function StudentCard(props){
         <Card className={classes.root}>
             <Typography variant="h6" className={classes.searchBarHeading}>Bring forth the employee who excels above all others.</Typography>
             <Container className={classes.searchBar}>
-                <Typography className={classes.searchBarTitle} >Ex : "Software Engineering"</Typography>
+                {/* <Typography className={classes.searchBarTitle} >Ex : "Software Engineering"</Typography> */}
                 <TextField
                     // id="input-with-icon-textfield"
                     label=""
                     // value=""
+                    // placeholder='Ex : Software Engineering'
                     onChange={(event) => {
                         setSearchTerm(event.target.value);
                       }}
@@ -133,10 +134,11 @@ export function StudentCard(props){
                     ),
                     }}
                 />
+                <Typography  style={{marginTop:"5px"}} className={classes.searchBarTitle} >Ex : "Software Engineering"</Typography>
             </Container>
-            <Container sx={{display: 'flex' , flexDirection: 'row'}}>
-              <Typography  display="inline" sx={{}} >Student Name</Typography>
-              <Typography  display="inline" style ={{textAlign:'left' , flex: 1 , marginLeft: '25%'}}>Rating</Typography>
+            <Container sx={{display: 'flex' ,marginTop:'15px', flexDirection: 'row'}}>
+              <Typography  display="inline" style={{marginLeft:'5%',fontSize:"20px"}}  >Student Name</Typography>
+              <Typography  display="inline" style ={{textAlign:'left' , flex: 1 ,fontSize:"20px", marginLeft: '40%'}}>Rating</Typography>
             </Container>
            
             <Table>
@@ -154,7 +156,7 @@ export function StudentCard(props){
                     <TableRow>
                       <Container sx={{display: 'flex'}}>
                         <TableCell align="right" sx={{borderBottom: 'none' , display:'flex'}}><Link to ={`getUserData/${item.email}`} style={{ textDecoration: 'none' }} ><Typography sx={{marginRight: '5%' , textDecoration: 'none'}}>{item.fname} {item.lname}</Typography> </Link> </TableCell>
-                        <TableCell  align="right" sx={{borderBottom: 'none' , display:'flex'}}><StarRating star={item.rating} /> </TableCell>
+                        <TableCell  sx={{borderBottom: 'none' , display:'flex',position:'absolute', marginLeft:"15%"}} style={{}} ><StarRating star={item.rating} /> </TableCell>
                       </Container>
                      
                     
