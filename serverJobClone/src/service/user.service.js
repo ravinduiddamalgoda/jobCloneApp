@@ -32,7 +32,9 @@ async function findUserByEmail(email){
     const newRate = new Rating({
         email , 
         rating:0,
-        major
+        major,
+        fname,
+        lname
     });
     await newRate.save();
     

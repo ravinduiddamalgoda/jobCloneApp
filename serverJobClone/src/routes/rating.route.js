@@ -1,10 +1,14 @@
 import { Router } from "express";
-import { AddRate } from "../controllers/rating.controller";
-
+import { AddRate, getRate } from "../controllers/rating.controller.js";
+import { authGuard, validate } from "../utils/validator.js";
 
 const rateRouter = Router();
 
 
-rateRouter.post('/updateRate' , AddRate);
+rateRouter.put('/updaterate/:email' , authGuard , AddRate);
+
+rateRouter.get('/getallrating' , getRate );
 
 // rateRouter.get()
+
+export default rateRouter;

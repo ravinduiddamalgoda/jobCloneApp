@@ -7,7 +7,7 @@ export function StarRating(props){
     const activeStars = props.star;
 
     return(<>
-        <Container>
+        <Container sx ={{flex: 1 , }}>
 
         {[...new Array(totalStars)].map((arr, index) => {
         return index < activeStars ? <StarIcon color="red"/> : <StarBorderIcon />;

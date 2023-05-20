@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from '../component/AuthProvider';
 import { StarRating } from "./startRating";
 import { Link } from "react-router-dom";
+import { StarRatingEditable } from "./starRatingEditable";
 
 
 const useStyle = makeStyles((theme) => ({ 
@@ -56,7 +57,7 @@ const useStyle = makeStyles((theme) => ({
 
  }));
 
-export function StudentCard(props){
+export function StudentCardAdmin(props){
     const classes = useStyle();
     const token = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
@@ -153,8 +154,8 @@ export function StudentCard(props){
                     // {item.email}
                     <TableRow>
                       <Container sx={{display: 'flex'}}>
-                        <TableCell align="right" sx={{borderBottom: 'none' , display:'flex'}}><Link to ={`getUserData/${item.email}`} style={{ textDecoration: 'none' }} ><Typography sx={{marginRight: '5%' , textDecoration: 'none'}}>{item.fname} {item.lname}</Typography> </Link> </TableCell>
-                        <TableCell  align="right" sx={{borderBottom: 'none' , display:'flex'}}><StarRating star={item.rating} /> </TableCell>
+                        <TableCell align="right" sx={{borderBottom: 'none' , display:'flex'}}><Link to ={`admin/getUserData/${item.email}`} style={{ textDecoration: 'none' }} ><Typography sx={{marginRight: '5%' , textDecoration: 'none'}}>{item.fname} {item.lname}</Typography> </Link> </TableCell>
+                        <TableCell  align="right" sx={{borderBottom: 'none' , display:'flex'}}><StarRatingEditable  email={item.email}/> </TableCell>
                       </Container>
                      
                     

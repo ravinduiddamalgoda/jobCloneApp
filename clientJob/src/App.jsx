@@ -21,6 +21,9 @@ import { LoginPageAdmin } from './screens/adminLogin'
 import { AdminMain } from './screens/adminMain'
 import { RegisterJobRe } from './screens/jobRegister'
 import { MainLoginPage } from './screens/newLogin'
+import { UserDataShow } from './screens/userDataShow'
+import { UserDataShowAdmin } from './screens/userDataShowAdmin'
+import { AddJobAdmin } from './screens/addJobAdmin'
 
 function ProtectedRoutes() {
   console.log("in protected route");
@@ -34,7 +37,6 @@ function ProtectedRoutes() {
         {/* <Route path="jobmain" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
         {/* <Route path="" element={<JobReMain />} /> */}
-        <Route path="adminmain" element = {<AdminMain/>} />
       </Routes>
     </AuthGuard>
   );
@@ -47,7 +49,24 @@ function ProtectedRoutesJob() {
         <Route path="" element={<JobReMain />} />
         {/* <Route path="jobre" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
-        
+        <Route path= "getuserdata/:email" element = {<UserDataShow/>} />
+        <Route path="adminmain" element = {<AdminMain/>} />
+
+      </Routes>
+    </AuthGuard>
+  );
+
+}
+
+function ProtectedRoutesAdmin() {
+  return (
+    <AuthGuard>
+      <Routes>
+        <Route path="" element={<AdminMain />} />
+        {/* <Route path="jobre" element = {<JobReMain />} /> */}
+        <Route path="addjob" element = {<AddJobAdmin />} />
+        <Route path= "admin/getuserdata/:email" element = {<UserDataShowAdmin/>} />
+        <Route path="adminmain" element = {<AdminMain/>} />
 
       </Routes>
     </AuthGuard>
@@ -86,6 +105,7 @@ function App() {
       {/* <Route path="app/" element={<ProtectedRoutes />} /> */}
       <Route path="app/*" element={<ProtectedRoutes />} />
       <Route path="job/*" element={<ProtectedRoutesJob />} />
+      <Route path="admin/*" element={<ProtectedRoutesAdmin />} />
       <Route path="*" element={<GuestRoutes />} />
       {/* <Route path="home" element={<HomePage/>} /> */}
      

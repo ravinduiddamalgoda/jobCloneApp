@@ -10,6 +10,14 @@ const ratingSchema = new Schema({
     major: {
         required: true,
         type: String,
+    } ,
+    fname:{
+        required: true,
+        type: String,
+    },
+    lname:{
+        required: true,
+        type: String,
     }
 
 });

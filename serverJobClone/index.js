@@ -10,6 +10,7 @@ import cors from 'cors';
 import Stripe from "stripe";
 import { resolve } from 'path';
 import dotenv from "dotenv";
+import rateRouter from './src/routes/rating.route.js';
 
 const env = dotenv.config({ path: "./.env" });
 
@@ -52,6 +53,7 @@ app.use(userRouter)
 app.use(jobRouter)
 app.use(applicantRouter)
 app.use(recruiterRoute);
+app.use(rateRouter);
 app.get("/config", (req, res) => {
     res.send({
       publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,

@@ -7,6 +7,6 @@ const jobRouter = Router();
 
 jobRouter.post('/addJob' ,  addJob);
 jobRouter.get('/getJob' ,  allJobs);
-jobRouter.get('/getJobByRecuiter',getJobByRecuiter)
+jobRouter.get('/getJobByRecuiter/:email',getJobByRecuiter)
 
 export default jobRouter;

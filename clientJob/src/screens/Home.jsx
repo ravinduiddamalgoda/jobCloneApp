@@ -8,6 +8,8 @@ import pay from '../Images/pay.png'
 import { FaFacebook,FaYoutube,FaLinkedin,FaInstagram,FaRegBuilding,FaSearch,FaTrophy,FaGrin,FaDollarSign,FaGraduationCap} from 'react-icons/fa';
 export function HomePage(){
 
+
+    localStorage.clear();
     return(
 
         <div>

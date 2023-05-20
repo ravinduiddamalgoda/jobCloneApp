@@ -33,7 +33,7 @@ export const allJobs = async (req ,res) => {
 export const getJobByRecuiter = async (req,res) => {
     // const curntRecruiter  = req.user;
     // console.log(curntRecruiter.email);
-
+    const email = req.params['email'];
     try{
         
         // const {recuiterEmail} = req.body;
@@ -42,7 +42,7 @@ export const getJobByRecuiter = async (req,res) => {
         //     console.log(recuiterEmail);
         //     return res.status(400).send({ err: 'email not found' });
         // }
-        const recuiterJob = await jobService.recuiterJob("kumar@gmail.com");
+        const recuiterJob = await jobService.recuiterJob(email);
         res.status(200).json(recuiterJob);
     }catch(err){
         res.status(400).send({ err: err.message });

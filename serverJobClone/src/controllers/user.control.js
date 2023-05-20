@@ -71,3 +71,21 @@ export const getAllUsers = async (req , res) => {
     }
 
 }
+
+
+
+export const getUserByEmail = async (req , res) =>{
+  const email = req.params['email'];
+  try{
+    const data =  await UserService.findUserByEmail(email);
+    const userCpy =  JSON.parse(JSON.stringify(data));
+    delete userCpy?.password
+    res.status(200).send(userCpy);
+  }catch (err){
+    res.status(400),send({err: err.message});
+  }
+ 
+
+
+
+}

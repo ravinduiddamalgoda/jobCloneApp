@@ -90,19 +90,19 @@ export function LoginPageAdmin(){
 
     const makeLogin = async (formData) => {
       try {
-        const res = await axios.post('http://localhost:3000/recruiter-login', {
+        const res = await axios.post('http://localhost:3000/adminlogin', {
           ...formData,
         });
         console.log(res.data);
         // alert(res.data);
         await saveToken(res?.data);
-        enqueueSnackbar('Succesfully Logged In', { variant: 'success' });
+        enqueueSnackbar('Admin Succesfully Logged In', { variant: 'success' });
         // console.log("done");
         if(!init){
           // console.log("init in");
           await init();
         }
-        setTimeout(()=>{ navigate('/job');} , 500);
+        setTimeout(()=>{ navigate('/admin');} , 500);
        
         // window.location.reload();
         // useEffect(() => {
@@ -118,6 +118,48 @@ export function LoginPageAdmin(){
         enqueueSnackbar(error, { variant: 'error' });
       }
     };
+    
+
+    // const makeLogin = async (formData) => {
+    //   try {
+
+    //     if(formData.email === "admin@gmail.com" && formData.password === "12345678"  ){
+
+    //       enqueueSnackbar('Succesfully Logged In', { variant: 'success' });
+    //       navigate("/admin");
+    //     }
+    //     else{
+    //       enqueueSnackbar("Login Error Check User Name and Password", { variant: 'error' });
+    //     }
+    //     // const res = await axios.post('http://localhost:3000/recruiter-login', {
+    //     //   ...formData,
+    //     // });
+    //     // console.log(res.data);
+    //     // // alert(res.data);
+    //     // await saveToken(res?.data);
+    //     // enqueueSnackbar('Succesfully Logged In', { variant: 'success' });
+    //     // // console.log("done");
+    //     // if(!init){
+    //     //   // console.log("init in");
+    //     //   await init();
+    //     // }
+    //     // setTimeout(()=>{ navigate('/job/adminmain');} , 500);
+       
+    //     // // window.location.reload();
+    //     // // useEffect(() => {
+         
+    //     // //       // console.log("redirect to app...");
+    //     // //     navigate("/app");
+          
+    //     // //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    //     // // }, []); 
+
+    //   } catch (err) {
+    //     // const error = err?.response?.data?.err || err?.message;
+    //     // console.log(error);
+    //     enqueueSnackbar(err.message, { variant: 'error' });
+    //   }
+    // };
     
     return (
       <Box style={{ width : '100%' , height:'100%' , margin: 'auto auto'}}>

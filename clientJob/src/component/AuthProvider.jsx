@@ -21,7 +21,7 @@ export function AuthProviderComponent({ children }){
             setLoading(true);
             // console.log("Initalize Method..");
             const fromStorage = await localStorage.getItem('token');
-            // console.log(fromStorage);
+            console.log(fromStorage);
             if(fromStorage){
                 const data = JSON.parse(fromStorage);
                 const axiosClient = axios.create({
