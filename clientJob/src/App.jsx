@@ -24,6 +24,7 @@ import { MainLoginPage } from './screens/newLogin'
 import { UserDataShow } from './screens/userDataShow'
 import { UserDataShowAdmin } from './screens/userDataShowAdmin'
 import { AddJobAdmin } from './screens/addJobAdmin'
+import { UpdateProfile } from './screens/updateProfile'
 
 function ProtectedRoutes() {
   console.log("in protected route");
@@ -37,6 +38,7 @@ function ProtectedRoutes() {
         {/* <Route path="jobmain" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
         {/* <Route path="" element={<JobReMain />} /> */}
+        <Route path="update" element={<UpdateProfile />} />
       </Routes>
     </AuthGuard>
   );
