@@ -79,6 +79,18 @@ export function UserCard(props) {
           Generate CV
         </Button>
       </CardActions>
+      <CardActions>
+        <Button
+          className={classes.button}
+          size="large"
+          variant="contained"
+          component={Link}
+          to="update"
+          sx={{ backgroundColor: "#017143" }}
+        >
+          UPDATE PROFILE
+        </Button>
+      </CardActions>
     </Card>
   );
 }
