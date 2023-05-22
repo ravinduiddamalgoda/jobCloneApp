@@ -448,8 +448,9 @@ const useStyle = makeStyles((theme) => ({
              <Container sx={{padding:'10%'}}>
                 {/* <CV_data />   */}
                 <CV_data cvData = {cvData} />   
-                <Button onClick={() => {setLinkBtn(!linkBtn)}}>
-                    Generate Another
+                <Button color="success"
+                variant="contained" onClick={() => {setLinkBtn(!linkBtn)}}>
+                <Link to="/app" >Generate Another </Link>
                 </Button>
              </Container>
             </>

@@ -18,4 +18,6 @@ userRouter.get('/getallusers' , getAllUsers);
  
 userRouter.get('/userbymail/:email' , getUserByEmail);
 
+// userRouter.put('/updateUser/:userID' ,authGuard , )
+
 export default userRouter;

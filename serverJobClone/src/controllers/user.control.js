@@ -1,5 +1,6 @@
 import UserService from "../service/user.service.js";
 import Rating from "../models/rating.js";
+import User from "../models/user.js";
 export const CurrentUser = async (req ,res) => {
     const curntUser  = req.user;
     //console.log(currntUser);
@@ -23,6 +24,21 @@ export const CurrentUser = async (req ,res) => {
 
 }
 
+
+export const UpdateUser = async( req , res) => {
+  const id = req.params['userID'];
+
+  try {
+    const {fname, lname, major , skills , level , qualification} = req.body;
+    const updatedData = await User.findByIdAndUpdate( id , {fname, lname, major , skills , level , qualification});
+    res.json(updatedData);
+
+  }catch(err){
+
+    res.status(400).send({ err: err.message });
+  }
+
+}
 
 export const RegisterUser = async (req, res) => {
   try {

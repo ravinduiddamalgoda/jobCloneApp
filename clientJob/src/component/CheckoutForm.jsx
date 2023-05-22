@@ -72,9 +72,13 @@ export default function CheckoutForm() {
       <button disabled={isProcessing || !stripe || !elements} id="submit"> <span id="button-text" style={{color:'#017143' , maxWidth:'500px' , borderRadius: '2px'}}>
           {isProcessing ? "Processing ... " : "Pay now"}
         </span></button>
+
       {/* Show any error or success messages */}
       {message && <div id="payment-message" style={{color: 'red'}}>{message}</div>}
     </form>
+    <Button onClick={() => {setLinkBtn(!linkBtn)}}>
+      <Link to="/app/cv" >Test Mode </Link>
+    </Button>
     </div>
   );
 }
