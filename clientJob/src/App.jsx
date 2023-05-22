@@ -49,7 +49,7 @@ function ProtectedRoutesJob() {
         <Route path="" element={<JobReMain />} />
         {/* <Route path="jobre" element = {<JobReMain />} /> */}
         <Route path="addjob" element = {<AddJob />} />
-        <Route path= "getuserdata/:email" element = {<UserDataShow/>} />
+        <Route path= "job/getuserdata/:email" element = {<UserDataShow/>} />
         <Route path="adminmain" element = {<AdminMain/>} />
 
       </Routes>

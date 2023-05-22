@@ -136,13 +136,13 @@ export function HomePage(){
             </div>
         </div>
 
-        {/* <div class="card1">
+        <div class="card1">
              <img src={search}/>
             <div class="cardword">
                 <h2>Work</h2><br />
                 <p>Pay promptly for service that leaves<br /> you completely delighted.</p>
             </div>
-        </div> */}
+        </div>
     <br /><br />
 
 

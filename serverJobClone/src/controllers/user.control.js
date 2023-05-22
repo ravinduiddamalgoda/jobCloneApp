@@ -3,6 +3,7 @@ import Rating from "../models/rating.js";
 export const CurrentUser = async (req ,res) => {
     const curntUser  = req.user;
     //console.log(currntUser);
+
     try{
         
         if(!curntUser){
@@ -12,7 +13,7 @@ export const CurrentUser = async (req ,res) => {
         const userDoc = await UserService.findUserByEmail(curntUser.email);
         const user = userDoc?.toJSON();
     
-        delete user?.password;
+        delete user?.password; //detele user paaword befor e send it to the frontend
         res.status(200).json(user);
 
     }catch(err){

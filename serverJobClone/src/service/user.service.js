@@ -15,7 +15,7 @@ async function findUserByEmail(email){
 
  async function register(fname , lname , email , password , major ,skills , level ,qualification ){
 
-    const hash = await createPasswordHash(password);
+    const hash = await createPasswordHash(password); // password hashing 
     const newUser = new User({
         fname,
         lname,

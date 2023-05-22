@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const jobSchema = new Schema({ 
     jobTitle: {
-        required: true, // title eka 
+        required: true, // title 
         type: String,
     },
     jobStatus:{

@@ -155,7 +155,7 @@ export function StudentCard(props){
                     // {item.email}
                     <TableRow>
                       <Container sx={{display: 'flex'}}>
-                        <TableCell align="right" sx={{borderBottom: 'none' , display:'flex'}}><Link to ={`getUserData/${item.email}`} style={{ textDecoration: 'none' }} ><Typography sx={{marginRight: '5%' , textDecoration: 'none'}}>{item.fname} {item.lname}</Typography> </Link> </TableCell>
+                        <TableCell align="right" sx={{borderBottom: 'none' , display:'flex'}}><Link to ={`job/getUserData/${item.email}`} style={{ textDecoration: 'none' }} ><Typography sx={{marginRight: '5%' , textDecoration: 'none'}}>{item.fname} {item.lname}</Typography> </Link> </TableCell>
                         <TableCell  sx={{borderBottom: 'none' , display:'flex',position:'absolute', marginLeft:"15%"}} style={{}} ><StarRating star={item.rating} /> </TableCell>
                       </Container>
                      

@@ -34,11 +34,13 @@ const useStyles = makeStyles((theme) => ({
 export function MainPageUser() {
   const className = useStyles();
   const [userName, setUserName] = useState("");
+  const [email , setEmail] = useState("");
   const [jobData , setJobData] = useState([]);
   const token = useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
   const [searchTerm, setSearchTerm] = useState("");
   // console.log(token);
+  
   var resData;
   useEffect(() => {
     try {
@@ -50,9 +52,12 @@ export function MainPageUser() {
             },
           })
           .then((res) => {
+            
             var name = res.data.fname + " " + res.data.lname;
             setUserName(name);
-            console.log(typeof res.data);
+            setEmail(res.data.email);
+            console.log(res.data);
+           
           });
       };
 
@@ -84,7 +89,10 @@ export function MainPageUser() {
       console.log(err)
     }
   }, []);
-
+  // if(!userName || userName ==""){
+  //   window.location.reload();
+  // }
+  // window.location.reload();
   console.log(userName);
   var skills = ["js", "node", " MERN Stack"];
   var des =
@@ -125,6 +133,9 @@ export function MainPageUser() {
               }
             }).map(item=>(
               <JobCard
+              applicantName = {userName}
+              applicantEmail = {email}
+              jobId = {item._id}
               jobTitle={item.jobTitle}
               company={item.company}
               jobStatus={item.jobStatus}

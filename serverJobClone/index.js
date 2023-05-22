@@ -11,13 +11,16 @@ import Stripe from "stripe";
 import { resolve } from 'path';
 import dotenv from "dotenv";
 import rateRouter from './src/routes/rating.route.js';
-
+import { fileURLToPath } from 'url';
+import path from 'path';
 const env = dotenv.config({ path: "./.env" });
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-08-01",
 });
 
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
 
 //import userRouter from './src/controllers/user.control';
 //import userRouter from './src/controllers/user.control';
@@ -82,29 +85,3 @@ app.get("/config", (req, res) => {
     }
   });
   
-// async function connectDb(){
-
-//     await mongoose.connect(url);
-
-// }
-
-// connectDb().then(async() => {
-//     console.log('Database Connected');
-//     app.listen(port , ()=>{
-//         console.log("Listening on port 3000");
-//     });
-    
-// }).catch((err) => {
-//     console.log('Connection Error' , err);
-// })
-
-
-
-
-
-
-// app.listen(port , ()=>{
-//         console.log("Listening on port 3000");
-// });
- 
-          

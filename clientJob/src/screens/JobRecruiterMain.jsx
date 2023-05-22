@@ -54,7 +54,7 @@ export function JobReMain(){
                 
             {
                 jobData.map(data => (
-                    <JobCard jobTitle={data.jobTitle} company={data.company} jobStatus ={data.jobStatus} jobType = {data.jobType} feild = {data.feild} position = {data.position} skill = {data.skill} description = {data.description}/>
+                    <JobCard jobId = {data._id} jobTitle={data.jobTitle} company={data.company} jobStatus ={data.jobStatus} jobType = {data.jobType} feild = {data.feild} position = {data.position} skill = {data.skill} description = {data.description}/>
                 ))
             }
         </Box>
