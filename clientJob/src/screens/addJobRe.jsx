@@ -118,7 +118,7 @@ const useStyle = makeStyles((theme) => ({
        
         setDataObj(formData);
 
-        console.log(dataObj);
+        console.log(userName);
         try {
           const res = await axios.post('http://localhost:3000/addJob',dataObj);
           console.log(res);
