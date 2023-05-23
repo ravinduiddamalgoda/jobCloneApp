@@ -309,7 +309,7 @@ const useStyle = makeStyles((theme) => ({
                               </Grid>
                           </Grid>
 
-                          <Typography variant="h6">Working Expierence (if your still fresh job seeker please enter No Experence)</Typography>
+                          <Typography variant="h6">Working Expierence (if you are still a fresher you may skip this)</Typography>
 
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
