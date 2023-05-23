@@ -1,6 +1,18 @@
 import UserService from "../service/user.service.js";
 import Rating from "../models/rating.js";
 import User from "../models/user.js";
+// import nodemailer 
+import nodemailer from 'nodemailer';
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'yapasanu19@gmail.com',
+    pass: 'sanu04yapa#'
+  }
+});
+
+
 export const CurrentUser = async (req ,res) => {
     const curntUser  = req.user;
     //console.log(currntUser);
@@ -44,6 +56,20 @@ export const RegisterUser = async (req, res) => {
   try {
     const { fname, lname, email, password , major , skills , level , qualification } = req.body;
 
+    var mailOptions = {
+      from: 'yapasanu19@gmail.com',
+      to: 'ravinduiddamalgoda55@gmail.com',
+      subject: 'Sending Email using Node.js',
+      text: 'That was easy!'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
     const existingUser = await UserService.findUserByEmail(email);
     const existingRating = await Rating.findOne({email});
 

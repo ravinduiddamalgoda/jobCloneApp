@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 // import "../App.css";
 function Payment() {
   const [stripePromise, setStripePromise] = useState(null);
@@ -28,11 +30,19 @@ function Payment() {
   return (
     <>
       <h1 style={{textAlign:'center' , paddingTop: '5%'}}>Need to Proceed Payment First</h1>
+       
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />
+          <Button variant="contained" onClick={() => {setLinkBtn(!linkBtn)}}  sx={{marginLeft: '45%'}}>
+            <Link to="/app/cv" >Test Mode</Link>
+          </Button>
         </Elements>
+        
       )}
+      {/* <Button onClick={() => {setLinkBtn(!linkBtn)}}>
+      <Link to="/app/cv" >Test Mode</Link>
+    </Button> */}
     </>
   );
 }

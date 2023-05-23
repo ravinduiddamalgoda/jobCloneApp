@@ -86,7 +86,7 @@ export function UserCard(props) {
           variant="contained"
           component={Link}
           to="update"
-          sx={{ backgroundColor: "#017143" }}
+          sx={{ backgroundColor: "#017143"  , marginBottom: '2%'}}
         >
           UPDATE PROFILE
         </Button>

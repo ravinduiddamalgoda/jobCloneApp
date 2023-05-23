@@ -141,7 +141,7 @@ export function LoginPage(){
                {/* <div style={{ textAlign: 'left' }}>
                   <img src={Logo} style={{ width: '70px', height: '70px' , marginLeft:"2rem"}} />
                 </div> */}
-                <Typography variant="h4" className={classes.login}>User Login</Typography>
+                <Typography variant="h4" className={classes.login}>Job Seeker Login</Typography>
               
                 <FormControl className={classes.formCtrl} style={{marginTop: '20px' , marginLeft:'10px' , marginRight: '10px'}}>
                   <TextField

@@ -79,7 +79,7 @@
   },
   title: {
     padding: 3,
-    backgroundColor: '#FFE5EC',
+    // backgroundColor: '#FFE5EC',
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -99,7 +99,7 @@
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#333',
-    marginLeft:"5rem"
+    marginLeft:"80px"
   },
   itemContainer: {
     padding: 3,
@@ -134,7 +134,7 @@ export const CV_data = ({ cvData }) => (
   <div>
     <PDFDownloadLink document={<CV cvData={cvData} />} fileName="cv.pdf">
       {({ blob, url, loading }) =>
-        loading ? 'Generating PDF...' : <a href={url} target="_blank">Download PDF</a>
+        loading ? 'Generating PDF...' : <a href={url} target="_blank">Click Here To Download Your Auto Generated CV</a>
       }
     </PDFDownloadLink>
   </div>

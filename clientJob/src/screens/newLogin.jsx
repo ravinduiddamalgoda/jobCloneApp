@@ -179,7 +179,7 @@ export function MainLoginPage(){
                     setUpdateBtn(true);
                     // setUpdateRe(!updateRe);
                 }}
-                >Login As User</Button>
+                >Login As Job Seeker</Button>
                 <Button
                 variant='contained'
                 color= 'success'

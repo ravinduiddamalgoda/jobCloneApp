@@ -445,14 +445,15 @@ const useStyle = makeStyles((theme) => ({
         return(
             <>
              <HeaderMain />
-             <Container sx={{padding:'10%'}}>
+             <Box sx={{paddingLeft:'40%' , paddingTop: '10%'}}>
                 {/* <CV_data />   */}
                 <CV_data cvData = {cvData} />   
                 <Button color="success"
+                 sx={{ marginTop: '3%'}}
                 variant="contained" onClick={() => {setLinkBtn(!linkBtn)}}>
                 <Link to="/app" >Generate Another </Link>
                 </Button>
-             </Container>
+             </Box>
             </>
            
     );

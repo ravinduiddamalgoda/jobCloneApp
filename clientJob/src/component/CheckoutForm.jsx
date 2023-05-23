@@ -76,9 +76,7 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message" style={{color: 'red'}}>{message}</div>}
     </form>
-    <Button onClick={() => {setLinkBtn(!linkBtn)}}>
-      <Link to="/app/cv" >Test Mode </Link>
-    </Button>
+    
     </div>
   );
 }

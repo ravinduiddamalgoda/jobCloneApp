@@ -234,7 +234,7 @@ export function JobCard(props) {
             setPdfURL([pdfUrlData]);
           } catch (error) {
             console.log(error);
-            enqueueSnackbar(errpr, { variant: "error" });
+            enqueueSnackbar(error, { variant: "error" });
           }
         
         
@@ -318,7 +318,13 @@ export function JobCard(props) {
               onClick={() => {
                 setApplyBtn(!applyBtn);
               }}
-              className={classes.applyBtn}
+              sx={{color: "#fff",
+              fontWeight: "600",
+              marginRight: "30%",
+              marginLeft: "30%",
+              marginBottom: "1%",
+              backgroundColor: "#017143"}}
+              // className={classes.applyBtn}
               variant="contained"
             >
               Apply To Job
@@ -347,7 +353,7 @@ export function JobCard(props) {
         <>
 
           {pdfView == true ? (<>
-            <a href={pdfURL} download>Download PDF</a>
+            {/* <a href={pdfURL} download>Download PDF</a> */}
           {  pdfURL.map((pdfUrl, index) => (
               <div key={index}>
                 <a href={pdfUrl} target="_blank" rel="noreferrer">

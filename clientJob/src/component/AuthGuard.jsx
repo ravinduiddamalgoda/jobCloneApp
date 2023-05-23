@@ -82,7 +82,7 @@ export function AuthGuard({ children }) {
           if (!authPayload || !authPayload.token || authPayload.token == null || authPayload.client == null) {
              
             // alert("no payloard");
-            navigate("/login");
+              navigate("/login");
             //  return <Navigate to="/login" />;
           }
           // alert("payloard have");
