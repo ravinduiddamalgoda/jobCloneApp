@@ -1,11 +1,16 @@
 import jobService from "../service/job.service.js";
 import Job from '../models/jobApp.js'
+import nodemailer from 'nodemailer';
+
+
+
 
 
 export  const addJob = async(req,res)=>{
 
     try{
         const {recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,description } = req.body;
+
         
         const newJob = await jobService.registerJob(recuiterEmail,jobTitle,jobStatus,jobType,feild,position,skill,description);
         res.status(200).json(newJob);

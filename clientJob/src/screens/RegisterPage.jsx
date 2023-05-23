@@ -336,10 +336,10 @@ export function RegisterUser(){
                   >
                    
                     <MenuItem value="Executive management">Executive management</MenuItem>
-                    <MenuItem value="Middle management ">Middle management </MenuItem>
+                    <MenuItem value="Middle management ">Middle management</MenuItem>
                     <MenuItem value="First level management">First level management</MenuItem>
                     <MenuItem value="Intermediate levelt">Intermediate level</MenuItem>
-                    <MenuItem value="Entry level">Entry level</MenuItem>
+                    <MenuItem value="Entry level">Entry level</MenuItem>
                   </Select>
                   {/* <FormHelperText style={{ color: 'red' }}>
                     {errors.major}
