@@ -17,14 +17,16 @@ export function About(){
                     fontSize: "50px",
             fontWeight: "bold",
             marginTop: "8%",
+            marginLeft: '4%', 
+            marginBottom: '1%',
             color: "#017143",
             fontFamily: "Bahnschrift"
                 }
             }
-            >ABOUT</h1>
+            >About Us</h1>
 
             <div class="img">
-        <img src={look} style={{width:"100%"}} />
+        <img src={look} style={{width:"95%" , marginLeft: '2%' , marginRight: '2%'}} />
     </div>
     <br /><br /><br />
     <div class="txt" >
