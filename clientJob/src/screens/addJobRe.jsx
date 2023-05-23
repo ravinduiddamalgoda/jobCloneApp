@@ -114,7 +114,7 @@ const useStyle = makeStyles((theme) => ({
     const dataPass = async(formData) => {
 
         // console.log(formData);
-        formData.recuiterEmail = "kumar@gmail.com";
+        formData.recuiterEmail = userName;
        
         setDataObj(formData);
 
@@ -123,6 +123,7 @@ const useStyle = makeStyles((theme) => ({
           const res = await axios.post('http://localhost:3000/addJob',dataObj);
           console.log(res);
           navigate('/job');
+          resetForm();
         } catch (err) {
           // console.log(res);
           const error = err.message;
@@ -254,8 +255,8 @@ const useStyle = makeStyles((theme) => ({
                                           value={values.jobTitle}
                                           onChange={handleChange}
                                           name="jobTitle"
-                                          label="Job Name"
-                                          placeholder="Job Name"
+                                          label="Job Title"
+                                          placeholder="Job Title"
                                       />
                                   </FormControl>
                               </Grid>
@@ -267,7 +268,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobStatus"
                                           label="Job Status"
-                                          placeholder="Job Status"
+                                          placeholder="Job Time Period"
                                       />
                                   </FormControl>
                               </Grid>
@@ -279,7 +280,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobType"
                                           label="Job Type"
-                                          placeholder="Job Type"
+                                          placeholder="Tempory / Fulltime / Part Time"
                                       />
                                   </FormControl>
                               </Grid>
@@ -291,7 +292,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="feild"
                                           label="Job Feild"
-                                          placeholder="Undergraduate / Postgraduate"
+                                          placeholder="Job Feild"
                                       />
                                   </FormControl>
                               </Grid>
@@ -306,7 +307,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="position"
                                           label="position"
-                                          placeholder="position" />
+                                          placeholder="Intern / Senior / Assiociate" />
                                   </FormControl>
                               </Grid>
                               
@@ -327,6 +328,17 @@ const useStyle = makeStyles((theme) => ({
                               />
 
                               <Button
+                                 sx={{ background:'#017143',
+                                 paddingLeft:"2rem",
+                                 paddingRight:"2rem",
+                                 marginStart:"2rem !important",
+                                 marginTop:"1rem",
+                                 marginBottom:"1rem",
+                                 color:"white",
+                                 transition: 'background-color 0.3s ease', 
+                                 '&:hover': {
+                                  background: '#1976d2', 
+                              }, }}
                                 className={classes.btnAddSkill}
                                 type="button"
                                 onClick={() => arrayHelpers.insert(index, "")} // insert an empty string at a position
@@ -334,6 +346,17 @@ const useStyle = makeStyles((theme) => ({
                                 Add
                               </Button>
                               <Button
+                               sx={{ background:'#017143',
+                               paddingLeft:"2rem",
+                               paddingRight:"2rem",
+                               marginStart:"2rem !important",
+                               marginTop:"1rem",
+                               marginBottom:"1rem",
+                               color:"white",
+                               transition: 'background-color 0.3s ease', 
+                               '&:hover': {
+                                background: '#1976d2', 
+                            }, }}
                                 className={classes.btnAddSkill}
                                 type="button"
                                 onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
@@ -344,12 +367,23 @@ const useStyle = makeStyles((theme) => ({
                           ))
                         ) : (
                           <Button
+                          sx={{ background:'#017143',
+                          paddingLeft:"2rem",
+                          paddingRight:"2rem",
+                          marginStart:"2rem !important",
+                          marginTop:"1rem",
+                          marginBottom:"1rem",
+                          color:"white",
+                          transition: 'background-color 0.3s ease', 
+                          '&:hover': {
+                           background: '#1976d2', 
+                       }, }}
                             type="button"
                             onClick={() => arrayHelpers.push("")}
                             className={classes.btnAddSkill}
                           >
                             {/* show this when user has removed all friends from the list */}
-                            Add Your Skills
+                            Add Your Required Skills
                           </Button>
                         )}
                       </div>

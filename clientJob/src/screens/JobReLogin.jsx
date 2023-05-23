@@ -85,6 +85,9 @@ export function RecruiterLoginPage(){
       await localStorage.setItem('token' , JSON.stringify(payload))
     }
 
+    const saveEmail = async (email) =>{
+      await localStorage.setItem('Remail' , email);
+    }
     const makeLogin = async (formData) => {
       try {
         const res = await axios.post('http://localhost:3000/recruiter-login', {
@@ -93,6 +96,7 @@ export function RecruiterLoginPage(){
         console.log(res.data);
         // alert(res.data);
         await saveToken(res?.data);
+        await saveEmail(formData.email);
         enqueueSnackbar('Succesfully Logged In', { variant: 'success' });
         // console.log("done");
         if(!init){

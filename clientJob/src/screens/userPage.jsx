@@ -99,8 +99,9 @@ export function MainPageUser() {
     "This is greate job position who looking for a Intern in web developer title.";
   return (
     <div>
-      <div style={{backgroundColor:"#017143", width:"100%"}} >
-    <HeaderMain/>
+      <HeaderMain/>
+    <div style={{backgroundColor:"#017143", width:"100%"}} >
+    
       <TextField type="text" 
         style={{ height:"3.5rem", 
         width:"30%",
@@ -118,7 +119,7 @@ export function MainPageUser() {
     {/* <Headerm/> */}
     
     
-      <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"1%" }}>
+      <Container sx={{ display: "flex", flexDirection: "row" ,marginTop:"1%" , marginLeft:'1%' }}>
         
         <UserCard name={userName} />
 

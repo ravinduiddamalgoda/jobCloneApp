@@ -14,7 +14,8 @@ import {
   TableCell,
   TableRow,
   TextField,
-  Grid
+  Grid,
+  Button
 } from "@mui/material";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import HeaderJob from "../component/JobHeader";
@@ -40,7 +41,9 @@ const useStyle = makeStyles((theme) => ({
         // marginLeft: '10%' ,
         height:'70vh',
         marginLeft: 'auto' ,
-        marginRight: 'auto'
+        marginRight: 'auto',
+        paddingBottom:'2%',
+        marginBottom: '2%'
 
     }, 
     
@@ -101,12 +104,14 @@ export function UserDataShowAdmin() {
             <Box className={classes.root}>
                 <img src={workingImg} width='20%' style={{marginLeft: 'auto' , marginRight: 'auto' }}/>
                 <Typography variant="h3" style={{marginLeft: 'auto' , marginRight: 'auto' , fontFamily: 'Copperplate' , color: '#017143' , paddingTop: '12px' , paddingBottom: '12px' }}>User Details</Typography>
-                <Typography variant="h5">First Name: {dataVal.fname} </Typography>
-                <Typography variant="h5">Last Name: {dataVal.lname} </Typography>
-                <Typography variant="h5">email: {dataVal.email} </Typography>
-                <Typography variant="h5">Specialized Level: {dataVal.major} </Typography>
-                <Typography variant="h5">skills: {dataVal.skills} </Typography>
-                <Typography variant="h5">Qualification: {dataVal.qualification} </Typography>
+                <Typography variant="h5" style ={{paddingTop: '1%' , color: '#017143'}} >First Name: {dataVal.fname} </Typography>
+                <Typography variant="h5" style ={{paddingTop: '1%' , color: '#017143'}}>Last Name: {dataVal.lname} </Typography>
+                <Typography variant="h5"style ={{paddingTop: '1%' , color: '#017143'}}>email: {dataVal.email} </Typography>
+                <Typography variant="h5" style ={{paddingTop: '1%' , color: '#017143'}} >Specialized Level: {dataVal.major} </Typography>
+                <Typography variant="h5"style ={{paddingTop: '1%' , color: '#017143'}} >skills: {dataVal.skills} </Typography>
+                <Typography variant="h5"style ={{paddingTop: '1%' , color: '#017143'}} >Qualification: {dataVal.qualification} </Typography>
+
+                <Button  variant="contained"  sx={{marginLeft:'30%' , marginRight: '30%' , marginBottom: '5%' , backgroundColor: '#017143'}}>Welcome to  Green User Info</Button>
             </Box>
             
     

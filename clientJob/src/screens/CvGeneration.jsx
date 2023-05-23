@@ -73,15 +73,15 @@ const useStyle = makeStyles((theme) => ({
       marginLeft: "auto",
       marginRight: "auto",
     },
-    btnAddSkill:{
-        background:'#017143',
-        paddingLeft:"2rem",
-        paddingRight:"2rem",
-        marginStart:"2rem !important",
-        marginTop:"1rem",
-        marginBottom:"1rem",
-        color:"white"
-    },
+    // btnAddSkill:{
+    //     background:'#017143',
+    //     // paddingLeft:"2rem",
+    //     // paddingRight:"2rem",
+    //     // marginStart:"2rem !important",
+    //     // marginTop:"1rem",
+    //     marginBottom:"1rem",
+    //     color:"white"
+    // },
     btnAddSkill:{
         background:'#017143',
         paddingLeft:"2rem",

@@ -61,6 +61,7 @@ export function AdminMain(){
             }
         </Box>
         {/* <StudentCard/> */}
+        
          <StudentCardAdmin />
 
     </Container>

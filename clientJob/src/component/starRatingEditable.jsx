@@ -13,6 +13,7 @@ export function StarRatingEditable(props) {
   const [click, setClick] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const [dataVal, setDataVal] = useState({});
+  const [normal , setNormal] = useState(true);
   const token = useContext(AuthContext);
 
   const handleStarClick = async (val) => {
@@ -48,6 +49,9 @@ export function StarRatingEditable(props) {
 
   return (
     <Container>
+
+
+
       {!click ? (
         <>
           {[...Array(totalStars)].map((_, index) => (
@@ -66,8 +70,11 @@ export function StarRatingEditable(props) {
           {[...Array(totalStars - activeStars)].map((_, index) => (
             <StarIcon key={index} style={{ cursor: "pointer" }} />
           ))}
-          <Button onClick={() => handleStarClick(totalStars - activeStars)}>
+          <Button variant="contained" sx={{ color:'#fff' , marginRight: '2%'}} onClick={() => handleStarClick(totalStars - activeStars)}>
             Submit
+          </Button>
+          <Button variant="contained" onClick={() => setClick(!click)}>
+            Cancel
           </Button>
         </>
       )}

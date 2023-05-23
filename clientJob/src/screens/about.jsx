@@ -28,7 +28,7 @@ export function About(){
     </div>
     <br /><br /><br />
     <div class="txt" >
-        <h2>
+        <h2 style={{margin:'5%'}}>
             NSBM Green University Town is keen that its students not only carry a good
             degree after their graduation from NSBM but are also holistic citizens, with
             the right exposure, capable of adding value to organizations they work at or

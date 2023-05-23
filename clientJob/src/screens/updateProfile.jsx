@@ -83,19 +83,68 @@ const useStyles = makeStyles((theme) => ({
 export function UpdateProfile() {
   const classes = useStyles();
   const navigate = useNavigate();
-
-  
+  const token = useContext(AuthContext);
+  const {enqueueSnackbar} = useSnackbar();
+  const [data , setData] = useState();
+  const {client} = useContext(AuthContext);
   const dataPass = async(formData) => {
     
-    var formData1=formData
-    formData1.skills=formData.skills.join(", ")
-    console.log(formData1);
-    formData.skills=""
+    // var formData1=formData
+    // formData1.skills=formData.skills.join(", ")
+    console.log(formData);
+
+    try {
+      const res = await axios.post('http://localhost:3000/updateUser/',formData);
+      console.log(res);
+      navigate('/app');
+      resetForm();
+    } catch (err) {
+      // console.log(res);
+      const error = err.message;
+      //  enqueueSnackbar(error, { variant: 'error' });
+    }
+    // valr
+    // formData.skill=""
 }
-    
+
+
+var resData;
+useEffect(() => {
+  try {
+    const currentUser = async () => {
+      const res = await axios
+        .get("http://localhost:3000/currunt-user", {
+          headers: {
+            Authorization: "Bearer " + token.token,
+          },
+        })
+        .then((res) => {
+          
+          var name = res.data.fname + " " + res.data.lname;
+          // setUserName(name);
+          // setEmail(res.data.email);
+          // console.log(res.data);
+          const dataValues = res.data;
+          setData(dataValues);
+          console.log(data.fname);
+          enqueueSnackbar("Job Data Grab", { variant: "info" });
+         
+        });
+    };
+
+    if (token) {
+      resData = currentUser();
+    }
+  } catch (err) {
+    enqueueSnackbar(err, { variant: "error" });
+  }
+}, [token]);
     
   
   return (
+
+    <>
+    {/* <HeaderMain/> */}
     <Box className={classes.root}>
       <Formik
         initialValues={{
@@ -103,7 +152,7 @@ export function UpdateProfile() {
             lname: "",
             email: "",
             major: "",
-            skills:"",
+            skill:"",
             level:"",
             qualification:"",
          
@@ -113,210 +162,188 @@ export function UpdateProfile() {
       >
         {({ values, handleChange, handleSubmit }) => {
           return (
+            <>
             <div>
-              <Typography
-                className={classes.title}
-                component="h2"
-                sx={{ color: "#28a745", fontSize: 22 }}
-              >
-                UPDATE PROFILE
-              </Typography>
+             
+             <Typography
+               className={classes.title}
+               component="h2"
+               sx={{ color: "#28a745", fontSize: 22 }}
+             >
+               UPDATE PROFILE
+             </Typography>
 
-              <Typography
-                className={classes.title}
-                component="h2"
-                sx={{ color: "#28a745", fontSize: 22 }}
-              >
-               {/* <Avatar  alt="Remy Sharp" style={{margin:"0 auto"}}  sx={{ width: 100, height: 100}}/> */}
-              </Typography>
+             <Typography
+               className={classes.title}
+               component="h2"
+               sx={{ color: "#28a745", fontSize: 22 }}
+             >
+              {/* <Avatar  alt="Remy Sharp" style={{margin:"0 auto"}}  sx={{ width: 100, height: 100}}/> */}
+             </Typography>
 
 
-              {/* <input
-          
-          type="file"
-          accept="image/*"
-          name="img"
-          value={values.img}
-          hidden
-          onChange={handleChange}
-        
-        />
+             {/* <input
+         
+         type="file"
+         accept="image/*"
+         name="img"
+         value={values.img}
+         hidden
+         onChange={handleChange}
+       
+       />
 
 
 <TextField
-        type="file"
-        onChange={handleChange}
-        InputLabelProps={{ shrink: true }}
-      /> */}
+       type="file"
+       onChange={handleChange}
+       InputLabelProps={{ shrink: true }}
+     /> */}
 
 
+
+            
+
+             <Grid container spacing={2}>
+               <Grid item xs={12} sm={6}>
+                 <FormControl className={classes.formCtrl} fullWidth>
+                   <TextField
+                     sx={{ width: "100%" }}
+                     value={values.fname}
+                     onChange={handleChange}
+                     name="fname"
+                     label="First Name"
+                     placeholder="First Name"
+                   />
+                 </FormControl>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+                 <FormControl className={classes.formCtrl} fullWidth>
+                   <TextField
+                     sx={{ width: "100%" }}
+                     value={values.lname}
+                     onChange={handleChange}
+                     name="lname"
+                     label="Last Name"
+                     placeholder="Last Name"
+                   />
+                 </FormControl>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+                 {/* <FormControl className={classes.formCtrl} fullWidth>
+                   <TextField
+                     sx={{ width: "100%" }}
+                     value={values.email}
+                     onChange={handleChange}
+                     name="email"
+                     label="Email"
+                     placeholder="Email"
+                   />
+                 </FormControl> */}
+               </Grid>
+             </Grid>
+
+             {/* <Typography variant="h6"  className={classes.subtitle}>Specialized Major</Typography> */}
+             <Grid
+               item
+               xs={12}
+               sm={12}
+               style={{ marginTop: "15px" }}
+               spacing={2}
+             >
+               <FormControl className={classes.formCtrl} fullWidth>
+                 <TextField
+                   value={values.major}
+                   onChange={handleChange}
+                   name="major"
+                   label="Your Specialised Major"
+                   placeholder="Ex: Software Engineer"
+                   sx={{ width: "100%" }}
+                 />
+               </FormControl>
+             </Grid>
+             <Grid container style={{ marginTop: "15px" }} spacing={2}>
+               <Grid item xs={12} sm={6}>
+
+                 <InputLabel id="demo-simple-select-label">Specialized Level</InputLabel>
+                 <Select
+                   sx={{ minWidth: 250 }}
+                   value={values.level}
+                   onChange={handleChange}
+                   name="level"
+                   displayEmpty
+                   inputProps={{ "aria-label": "Without label" }}
+                 >
+                  
+                   <MenuItem value="Executive management">Executive management</MenuItem>
+                   <MenuItem value="Middle management ">Middle management </MenuItem>
+                   <MenuItem value="First level management">First level management</MenuItem>
+                   <MenuItem value="Intermediate levelt">Intermediate level</MenuItem>
+                   <MenuItem value="Entry level">Entry level</MenuItem>
+                 </Select>
+
+               </Grid>
+               
+             </Grid>
+             <Grid item xs={12} sm={10}>
+
+             <Typography variant="h6" style={{paddingTop: '5%'}}> Skills</Typography>
+               <FormControl className={classes.formCtrl} fullWidth>
+                   <TextField
+                     sx={{ width: "100%" }}
+                     value={values.skill}
+                     onChange={handleChange}
+                     name="skill"
+                     label="Skills"
+                     placeholder="Skills"
+                   />
+                 </FormControl>
+
+               </Grid>
+             <Grid item xs={12} sm={10} style={{marginTop:"15px"}}>
+                 <FormControl className={classes.formCtrl} fullWidth>
+                   <TextField
+                     sx={{ width: "100%" }}
+                     value={values.qualification}
+                     onChange={handleChange}
+                     multiline
+                     maxRows={4}
+                     name="qualification"
+                     label="Qualification"
+                     placeholder="Qualification"
+                   />
+                 </FormControl>
+               </Grid>
+               
+             <Grid item xs={12} sm={2}>
+                 <Button
+                   onClick={() => handleSubmit()}
+                   type="submit"
+                   variant="contained"
+                   sx={{
+                     marginTop: "20px",
+                     backgroundColor: "#017143",
+                     width: "100%",
+                   }}
+                 >
+                   Submit
+                 </Button>
+               </Grid>
+            
+             <Grid container spacing={2}>
+             
+               
+             </Grid>
 
              
-
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <FormControl className={classes.formCtrl} fullWidth>
-                    <TextField
-                      sx={{ width: "100%" }}
-                      value={values.fname}
-                      onChange={handleChange}
-                      name="fname"
-                      label="First Name"
-                      placeholder="First Name"
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControl className={classes.formCtrl} fullWidth>
-                    <TextField
-                      sx={{ width: "100%" }}
-                      value={values.lname}
-                      onChange={handleChange}
-                      name="lname"
-                      label="Last Name"
-                      placeholder="Last Name"
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControl className={classes.formCtrl} fullWidth>
-                    <TextField
-                      sx={{ width: "100%" }}
-                      value={values.email}
-                      onChange={handleChange}
-                      name="email"
-                      label="Email"
-                      placeholder="Email"
-                    />
-                  </FormControl>
-                </Grid>
-              </Grid>
-
-              {/* <Typography variant="h6"  className={classes.subtitle}>Specialized Major</Typography> */}
-              <Grid
-                item
-                xs={12}
-                sm={12}
-                style={{ marginTop: "15px" }}
-                spacing={2}
-              >
-                <FormControl className={classes.formCtrl} fullWidth>
-                  <TextField
-                    value={values.major}
-                    onChange={handleChange}
-                    name="major"
-                    label="Your Specialised Major"
-                    placeholder="Ex: Software Engineer"
-                    sx={{ width: "100%" }}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid container style={{ marginTop: "15px" }} spacing={2}>
-                <Grid item xs={12} sm={6}>
-
-                  <InputLabel id="demo-simple-select-label">Specialized Level</InputLabel>
-                  <Select
-                    sx={{ minWidth: 250 }}
-                    value={values.level}
-                    onChange={handleChange}
-                    name="level"
-                    displayEmpty
-                    inputProps={{ "aria-label": "Without label" }}
-                  >
-                   
-                    <MenuItem value="Executive management">Executive management</MenuItem>
-                    <MenuItem value="Middle management ">Middle management </MenuItem>
-                    <MenuItem value="First level management">First level management</MenuItem>
-                    <MenuItem value="Intermediate levelt">Intermediate level</MenuItem>
-                    <MenuItem value="Entry level">Entry level</MenuItem>
-                  </Select>
-
-                </Grid>
-                <Grid item xs={12} sm={6}>
-
-                <Typography variant="h6"> Skills</Typography>
-                <FieldArray
-                    name="skills"
-                    render={(arrayHelpers) => (
-                      <div>
-                        {values.skills && values.skills.length > 0 ? (
-                          values.skills.map((skills, index) => (
-                            <div key={index}>
-                              <Field
-                                name={`skills.${index}`}
-                                className={classes.formCtrl2}
-                              />
-
-                              <Button
-                                className={classes.btnAddSkill}
-                                type="button"
-                                onClick={() => arrayHelpers.insert(index, "")} // insert an empty string at a position
-                              >
-                                Add
-                              </Button>
-                              <Button
-                                className={classes.btnAddSkill}
-                                type="button"
-                                onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
-                              >
-                                Remove
-                              </Button>
-                            </div>
-                          ))
-                        ) : (
-                          <Button
-                            type="button"
-                            onClick={() => arrayHelpers.push("")}
-                            className={classes.btnAddSkill}
-                          >
-                            {/* show this when user has removed all friends from the list */}
-                            Add Your Skills
-                          </Button>
-                        )}
-                      </div>
-                    )}
-                  />
-                 </Grid>
-              </Grid>
-
-              <Grid item xs={12} sm={6} style={{marginTop:"15px"}}>
-                  <FormControl className={classes.formCtrl} fullWidth>
-                    <TextField
-                      sx={{ width: "100%" }}
-                      value={values.qualification}
-                      onChange={handleChange}
-                      name="qualification"
-                      label="Qualification"
-                      placeholder="Qualification"
-                    />
-                  </FormControl>
-                </Grid>
-                
-              <Grid item xs={12} sm={2}>
-                  <Button
-                    onClick={() => handleSubmit()}
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      marginTop: "20px",
-                      backgroundColor: "#017143",
-                      width: "100%",
-                    }}
-                  >
-                    Submit
-                  </Button>
-                </Grid>
-             
-              <Grid container spacing={2}>
-              
-                
-              </Grid>
-
-              
-            </div>
+           </div>
+            </>
+            
           );
         }}
       </Formik>
     </Box>
+    </>
+    
   );
 }

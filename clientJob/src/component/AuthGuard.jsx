@@ -78,7 +78,7 @@ export function AuthGuard({ children }) {
 
         try{
           let authPayload = useContext(AuthContext);
-          console.log(authPayload);
+          // console.log(authPayload);
           if (!authPayload || !authPayload.token || authPayload.token == null || authPayload.client == null) {
              
             // alert("no payloard");

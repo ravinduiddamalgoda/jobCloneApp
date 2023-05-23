@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0px 8px 30px rgba(0, 0, 0, 0.15)",
     },
     marginTop: "2rem",
+    // marginLeft: '5%',
+    width: '550px'
   },
   titleContainer: {
     alignItems: "center",
@@ -395,9 +397,19 @@ export function JobCard(props) {
       ) : (
         <>
           {pdfView == true ? (
-            <>
+            <div style= {{width:'400px'}}>
               {/* <a href={pdfURL} download>Download PDF</a> */}
-              {pdfData.map((pdfMap, index) => (
+              {pdfData.length == 0 || !pdfData ? (<>
+              {}
+              <br/>
+              <Typography variant="h5" sx={{color: 'black'}}>
+              No one applied yet.. 🤔 
+              </Typography>
+              <br/>
+              </>
+              ): (
+                <>
+               {pdfData.map((pdfMap, index) => (
                 // <div key={index}>
                 //   <a href={pdfUrl} target="_blank" rel="noreferrer">
                 //     Download PDF {index + 1}
@@ -441,6 +453,9 @@ export function JobCard(props) {
               
                 
               ))}
+              </>
+              )}
+             
 
               <Button
                 color="success"
@@ -455,7 +470,7 @@ export function JobCard(props) {
               >
                 Cancel
               </Button>
-            </>
+            </div>
           ) : (
             <>
               <div>

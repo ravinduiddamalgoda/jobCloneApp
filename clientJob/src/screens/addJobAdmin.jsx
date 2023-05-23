@@ -106,6 +106,7 @@ const useStyle = makeStyles((theme) => ({
     const [dataObj , setDataObj] = useState({});
     const [linkBtn , setLinkBtn] = useState(true);
     const [userName, setUserName] = useState("");
+    const navigate = useNavigate();
     const token = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
     
@@ -121,7 +122,8 @@ const useStyle = makeStyles((theme) => ({
         try {
           const res = await axios.post('http://localhost:3000/addJob',dataObj);
           console.log(res);
-          navigate('/job');
+          enqueueSnackbar("Uploaded Successfully", { variant: "success" });
+          navigate('/admin');
         } catch (err) {
           // console.log(res);
           const error = err.message;
@@ -253,8 +255,8 @@ const useStyle = makeStyles((theme) => ({
                                           value={values.jobTitle}
                                           onChange={handleChange}
                                           name="jobTitle"
-                                          label="Job Name"
-                                          placeholder="degree"
+                                          label="Job Title"
+                                          placeholder="Job Title"
                                       />
                                   </FormControl>
                               </Grid>
@@ -266,7 +268,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobStatus"
                                           label="Job Status"
-                                          placeholder="year"
+                                          placeholder="Job Time Period"
                                       />
                                   </FormControl>
                               </Grid>
@@ -278,7 +280,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobType"
                                           label="Job Type"
-                                          placeholder="University"
+                                          placeholder="Tempory / Fulltime / Part Time"
                                       />
                                   </FormControl>
                               </Grid>
@@ -290,7 +292,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="feild"
                                           label="Job Feild"
-                                          placeholder="Undergraduate / Postgraduate"
+                                          placeholder="Job Feild"
                                       />
                                   </FormControl>
                               </Grid>
@@ -305,7 +307,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="position"
                                           label="position"
-                                          placeholder="position" />
+                                          placeholder="Intern / Senior / Assiociate" />
                                   </FormControl>
                               </Grid>
                               
@@ -326,6 +328,18 @@ const useStyle = makeStyles((theme) => ({
                               />
 
                               <Button
+                                 sx={{ background:'#017143',
+                                 paddingLeft:"2rem",
+                                 paddingRight:"2rem",
+                                 marginStart:"2rem !important",
+                                 marginTop:"1rem",
+                                 marginBottom:"1rem",
+                                 color:"white",
+                                 transition: 'background-color 0.3s ease', 
+                                 '&:hover': {
+                                  background: '#1976d2', 
+                              },
+                                 }}
                                 className={classes.btnAddSkill}
                                 type="button"
                                 onClick={() => arrayHelpers.insert(index, "")} // insert an empty string at a position
@@ -333,6 +347,20 @@ const useStyle = makeStyles((theme) => ({
                                 Add
                               </Button>
                               <Button
+                                 sx={{ background:'#017143',
+                                 paddingLeft:"2rem",
+                                 paddingRight:"2rem",
+                                 marginStart:"2rem !important",
+                                 marginTop:"1rem",
+                                 marginBottom:"1rem",
+                                 color:"white",
+                                 transition: 'background-color 0.3s ease', 
+                                 '&:hover': {
+                                  background: '#1976d2', 
+                              },
+     
+     
+                                 }}
                                 className={classes.btnAddSkill}
                                 type="button"
                                 onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
@@ -344,6 +372,17 @@ const useStyle = makeStyles((theme) => ({
                         ) : (
                           <Button
                             type="button"
+                            sx={{ background:'#017143',
+                            paddingLeft:"2rem",
+                            paddingRight:"2rem",
+                            marginStart:"2rem !important",
+                            marginTop:"1rem",
+                            marginBottom:"1rem",
+                            color:"white",
+                            transition: 'background-color 0.3s ease', 
+                            '&:hover': {
+                             background: '#1976d2', 
+                         }, }}
                             onClick={() => arrayHelpers.push("")}
                             className={classes.btnAddSkill}
                           >

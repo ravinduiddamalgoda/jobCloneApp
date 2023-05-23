@@ -17,6 +17,9 @@ import {
   Input,
   TextField,
   Typography,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import imgUser from '../assets/images/userIcon.png';
 // const useStyle =  makeS
@@ -310,7 +313,7 @@ export function RegisterUser(){
                   
                   </>): (<>
                     <Typography variant="h6" className={className.subTopic}>Education Details</Typography>
-                    <FormControl className={className.formCtrl}>
+                    {/* <FormControl className={className.formCtrl}>
                       <TextField
                         className={className.formCtrl1}
                         value={values.level}
@@ -320,7 +323,24 @@ export function RegisterUser(){
                         label="Specialized level"
                         placeholder="Specialized level"
                       />
-                  </FormControl>
+                  </FormControl> */}
+                  <InputLabel className={className.formCtrl}>Specialized Level</InputLabel>
+                  <Select
+                    className={className.formCtrl}
+                    sx={{ minWidth: 250 }}
+                    value={values.level}
+                    onChange={handleChange}
+                    name="level"
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                  >
+                   
+                    <MenuItem value="Executive management">Executive management</MenuItem>
+                    <MenuItem value="Middle management ">Middle management </MenuItem>
+                    <MenuItem value="First level management">First level management</MenuItem>
+                    <MenuItem value="Intermediate levelt">Intermediate level</MenuItem>
+                    <MenuItem value="Entry level">Entry level</MenuItem>
+                  </Select>
                   {/* <FormHelperText style={{ color: 'red' }}>
                     {errors.major}
                   </FormHelperText> */}
