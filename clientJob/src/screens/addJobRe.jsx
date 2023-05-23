@@ -107,20 +107,28 @@ const useStyle = makeStyles((theme) => ({
     const [userName, setUserName] = useState("");
     const token = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
-    
+    const navigate = useNavigate();
     // console.log(linkBtn);
     // const history = useHistory();
     // dataCVAdd = dataObj;
     const dataPass = async(formData) => {
 
         // console.log(formData);
-        formData.recruiterEmail = userName;
+        formData.recuiterEmail = "kumar@gmail.com";
+       
         setDataObj(formData);
 
         console.log(dataObj);
-        // console.log(linkBtn);
-        // setLinkBtn(false);
-        // console.log(linkBtn);
+        try {
+          const res = await axios.post('http://localhost:3000/addJob',dataObj);
+          console.log(res);
+          navigate('/job');
+        } catch (err) {
+          // console.log(res);
+          const error = err.message;
+          //  enqueueSnackbar(error, { variant: 'error' });
+        }
+      
     }
 
 
@@ -247,7 +255,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobTitle"
                                           label="Job Name"
-                                          placeholder="degree"
+                                          placeholder="Job Name"
                                       />
                                   </FormControl>
                               </Grid>
@@ -259,7 +267,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobStatus"
                                           label="Job Status"
-                                          placeholder="year"
+                                          placeholder="Job Status"
                                       />
                                   </FormControl>
                               </Grid>
@@ -271,7 +279,7 @@ const useStyle = makeStyles((theme) => ({
                                           onChange={handleChange}
                                           name="jobType"
                                           label="Job Type"
-                                          placeholder="University"
+                                          placeholder="Job Type"
                                       />
                                   </FormControl>
                               </Grid>
@@ -303,47 +311,52 @@ const useStyle = makeStyles((theme) => ({
                               </Grid>
                               
                           </Grid>
-                          <Typography variant="h6"> Skills</Typography>
-                          <Grid item xs={12} sm={6}>
-                          <FieldArray
-                              name="skills"
-                              render={arrayHelpers => (
-                              <div>
-                                  {values.skill && values.skill.length > 0 ? (
-                                  values.skill.map((skill, index) => (
-                                      <div key={index}>
-                                      <Field name={`skill.${index}`} className={classes.formCtrl2}/>
+                               <Grid item xs={12} sm={6}>
 
-                                      <Button
-                                          className={classes.btnAddSkill}
-                                          type="button"
-                                          onClick={() => arrayHelpers.insert(index, '')} // insert an empty string at a position
-                                      >
-                                          Add
-                                      </Button>
-                                      <Button
-                                          className={classes.btnAddSkill}
-                                          type="button"
-                                          onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
-                                      >
-                                          Remove
-                                      </Button>
-                                      </div>
-                                  ))
-                                  ) : (
-                                  <button type="button" onClick={() => arrayHelpers.push('')} className={classes.btnAddSkill}>
-                                      {/* show this when user has removed all friends from the list */}
-                                      Add Your Skills
-                                  </button>
-                                  )}
-                                  {/* <div>
-                                      <button type="submit">Submit</button>
-                                  </div> */}
-                              </div>
-                              )}
-                          />
-                          </Grid>
-                         
+                <Typography variant="h6"> Skills</Typography>
+                <FieldArray
+                    name="skill"
+                    render={(arrayHelpers) => (
+                      <div>
+                        {values.skill && values.skill.length > 0 ? (
+                          values.skill.map((skill, index) => (
+                            <div key={index}>
+                              <Field
+                                name={`skill.${index}`}
+                                className={classes.formCtrl2}
+                              />
+
+                              <Button
+                                className={classes.btnAddSkill}
+                                type="button"
+                                onClick={() => arrayHelpers.insert(index, "")} // insert an empty string at a position
+                              >
+                                Add
+                              </Button>
+                              <Button
+                                className={classes.btnAddSkill}
+                                type="button"
+                                onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          ))
+                        ) : (
+                          <Button
+                            type="button"
+                            onClick={() => arrayHelpers.push("")}
+                            className={classes.btnAddSkill}
+                          >
+                            {/* show this when user has removed all friends from the list */}
+                            Add Your Skills
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  />
+                 </Grid>
+                          
 
                           <Grid container spacing={2}>
                           <Grid item xs={12} sm={12}>
@@ -356,7 +369,7 @@ const useStyle = makeStyles((theme) => ({
                                           multiline
                                           rows={4}
 
-                                          placeholder="Full Name"
+                                          placeholder="description"
                                           sx={{ width:"100%"}}
                                       />
                                   </FormControl>

@@ -106,7 +106,7 @@ export function UpdateProfile() {
             skills:"",
             level:"",
             qualification:"",
-            img:""
+         
         }}
 
         onSubmit = {dataPass}
@@ -127,11 +127,11 @@ export function UpdateProfile() {
                 component="h2"
                 sx={{ color: "#28a745", fontSize: 22 }}
               >
-               <Avatar  alt="Remy Sharp" style={{margin:"0 auto"}}  sx={{ width: 100, height: 100}}/>
+               {/* <Avatar  alt="Remy Sharp" style={{margin:"0 auto"}}  sx={{ width: 100, height: 100}}/> */}
               </Typography>
 
 
-              <input
+              {/* <input
           
           type="file"
           accept="image/*"
@@ -147,7 +147,7 @@ export function UpdateProfile() {
         type="file"
         onChange={handleChange}
         InputLabelProps={{ shrink: true }}
-      />
+      /> */}
 
 
 
