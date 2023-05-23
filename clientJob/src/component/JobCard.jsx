@@ -6,13 +6,13 @@ import {
   List,
   ListItem,
   Typography,
-  FormHelperText
+  FormHelperText,
 } from "@mui/material";
 import { Field, Formik } from "formik";
-import { useState , useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSnackbar } from "notistack";
 import axios from "axios";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import download from "downloadjs";
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -110,12 +110,15 @@ export function JobCard(props) {
   const [applyBtn, setApplyBtn] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
   const [fileObject, setFileObject] = useState(null);
-  const [pdfView , setPdfView] = useState(false);
-  const [jobId , setJonId] =  useState();
-  const [pdfURL , setPdfURL] = useState([]);
+  const [pdfView, setPdfView] = useState(false);
+  const [jobId, setJonId] = useState();
+  const [linkId , setLinkId] = useState(-1);
+  const [pdfURL, setPdfURL] = useState([]);
+  const [pdfData, setPdfData] = useState([]);
+  const [linkApp , setLinkApp] = useState(false);
   // const [email , setEmail] =  useState("");
   // const [userName , setUserName] =  useState("");
-  
+
   var email = "";
   var name = "";
   var id;
@@ -124,12 +127,11 @@ export function JobCard(props) {
     // setUserName(props.applicantName);
     name = props.applicantName;
     id = props.jobId;
-    
+
     console.log(email);
     console.log(name);
     // console.log(id);
   }
-  
 
   // if(props.jobId) {
   //   setJonId(props.jobId);
@@ -145,8 +147,8 @@ export function JobCard(props) {
     event.preventDefault();
 
     if (!selectedFile) {
-      console.log('No file selected');
-      enqueueSnackbar('No file selected', { variant: "error" });
+      console.log("No file selected");
+      enqueueSnackbar("No file selected", { variant: "error" });
       return;
     }
 
@@ -157,11 +159,11 @@ export function JobCard(props) {
     //   applicantName : name,
     //   appliedJobID : id,
     // };
-  
-    formData.append('cv', selectedFile);
-    formData.append('applicantEmail' , email);
-    formData.append('applicantName' , name);
-    formData.append('appliedJobID' , props.jobId);
+
+    formData.append("cv", selectedFile);
+    formData.append("applicantEmail", email);
+    formData.append("applicantName", name);
+    formData.append("appliedJobID", props.jobId);
     // formData.cv = selectedFile;
     // formData.applicantEmail = email;
     // formData.applicantName = name;
@@ -174,7 +176,7 @@ export function JobCard(props) {
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -185,7 +187,6 @@ export function JobCard(props) {
       console.log(error);
       enqueueSnackbar(error, { variant: "error" });
     }
-
 
     // try {
     //   const response = await axios.post('/upload', formData, {
@@ -201,57 +202,98 @@ export function JobCard(props) {
     // }
   };
 
+  const getPDFlink =  useCallback((id , index)=> {
+    // console.log(id);
 
+    const PDFlink = async () => {
 
- async function getPDFlink  (id) {
+      const path = "http://localhost:3000/getcvbyID/" + id;
 
-  // console.log(id);
+      console.log(path);
 
-        const PDFlink = async () => {
+      // const res = await axios
+      //   .get(path ,  { responseType: 'blob' })
+      //   .then((res) => {
 
-          const path = "http://localhost:3000/getcvByjobId/" + id;
-          
-          // console.log(path);
+      //     // var name = res.data.fname + " " + res.data.lname;
+      //     // setUserName(name);
+      //     // setEmail(res.data.email);
+      //     console.log(res.data);
+      //     setPdfURL(res?.data)
+      //   });
 
-          
-          // const res = await axios
-          //   .get(path ,  { responseType: 'blob' })
-          //   .then((res) => {
-              
-          //     // var name = res.data.fname + " " + res.data.lname;
-          //     // setUserName(name);
-          //     // setEmail(res.data.email);
-          //     console.log(res.data);
-          //     setPdfURL(res?.data)
-          //   });
+      //   const blob = await res.blob();
+      //   download(blob, "test.pdf");
+      try {
+        // const response = await axios.get(path);
 
-          //   const blob = await res.blob();
-          //   download(blob, "test.pdf");
-          try {
-            const response = await axios.get(path, { responseType: 'blob' });
-            const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
-            const pdfUrlData = URL.createObjectURL(pdfBlob);
-            setPdfURL([pdfUrlData]);
-          } catch (error) {
-            console.log(error);
-            enqueueSnackbar(error, { variant: "error" });
-          }
-        
-        
-        };
-  
-        PDFlink();
-        
-     
+        //////////////// PDF Veiw
+        const response = await axios.get(path, { responseType: "blob" });
+        const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+        const pdfUrlData = URL.createObjectURL(pdfBlob);
+        enqueueSnackbar("PDF Link Generated", { variant: "info" });
+        setPdfURL([pdfUrlData]);
+        setLinkApp(!linkApp);
+        setLinkId(index);
+        ////////////// pdf view done
+      } catch (error) {
+        console.log(error);
+        enqueueSnackbar(error, { variant: "error" });
+      }
+    };
+
+    PDFlink();
+  } , []);
+
+  async function getPDFData(id) {
+    // console.log(id);
+
+    const PDFData = async () => {
+      const path = "http://localhost:3000/getcvByjobId/" + id;
+
+      // console.log(path);
+
+      // const res = await axios
+      //   .get(path ,  { responseType: 'blob' })
+      //   .then((res) => {
+
+      //     // var name = res.data.fname + " " + res.data.lname;
+      //     // setUserName(name);
+      //     // setEmail(res.data.email);
+      //     console.log(res.data);
+      //     setPdfURL(res?.data)
+      //   });
+
+      //   const blob = await res.blob();
+      //   download(blob, "test.pdf");
+      try {
+        const response = await axios.get(path);
+
+        setPdfData(response?.data);
+        console.log(pdfData);
+        enqueueSnackbar("Data Got Successfully", { variant: "success" });
+        //////////////// PDF Veiw
+        // const response = await axios.get(path, { responseType: 'blob' });
+        // const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        // const pdfUrlData = URL.createObjectURL(pdfBlob);
+        // setPdfURL([pdfUrlData]);
+
+        ////////////// pdf view done
+      } catch (error) {
+        console.log(error);
+        enqueueSnackbar(error, { variant: "error" });
+      }
+    };
+
+    PDFData();
   }
-
   const sendFile = async (formData) => {
     // const dataInForm = formData;
     formData.applicantEmail = email;
     formData.applicantName = name;
     formData.appliedJobID = props.jobId;
-    if(!formData.cv) {
-      console.log("no cv")
+    if (!formData.cv) {
+      console.log("no cv");
     }
     console.log(formData.cv);
     setApplyBtn(!applyBtn);
@@ -318,12 +360,14 @@ export function JobCard(props) {
               onClick={() => {
                 setApplyBtn(!applyBtn);
               }}
-              sx={{color: "#fff",
-              fontWeight: "600",
-              marginRight: "30%",
-              marginLeft: "30%",
-              marginBottom: "1%",
-              backgroundColor: "#017143"}}
+              sx={{
+                color: "#fff",
+                fontWeight: "600",
+                marginRight: "30%",
+                marginLeft: "30%",
+                marginBottom: "1%",
+                backgroundColor: "#017143",
+              }}
               // className={classes.applyBtn}
               variant="contained"
             >
@@ -339,8 +383,7 @@ export function JobCard(props) {
                 onClick={() => {
                   setApplyBtn(!applyBtn);
                   setPdfView(!pdfView);
-                  getPDFlink(props.jobId);
-
+                  getPDFData(props.jobId);
                 }}
                 sx={{ marginRight: "5%", marginTop: "3%" }}
               >
@@ -351,42 +394,81 @@ export function JobCard(props) {
         </>
       ) : (
         <>
+          {pdfView == true ? (
+            <>
+              {/* <a href={pdfURL} download>Download PDF</a> */}
+              {pdfData.map((pdfMap, index) => (
+                // <div key={index}>
+                //   <a href={pdfUrl} target="_blank" rel="noreferrer">
+                //     Download PDF {index + 1}
+                //   </a>
+                // </div>
+                <div>
+                  
+                  <Typography variant="h6" 
+                  style={{paddingTop: '2%'}}
+                  >
+                    {pdfMap.applicantName}{"   "}
+                    <Button
+                      color="success"
+                      variant="contained"
+                      onClick={() => {
+                        getPDFlink(pdfMap._id , index);
+                      }}
+                    >
+                      Get CV
+                    </Button>
+                    {linkId == index ? (
+                      <div>
+                        {pdfURL.map((pdfMap, index) => (
+                      <div key={index}>
+                        <a href={pdfMap} target="_blank" rel="noreferrer">
+                          Download PDF
+                        </a>
+                      </div>
+                    ))}  
+                      </div>
+                       
+                    ):(<>
+                    </>)}
+                     
+                    {/* <Typography>Download </Typography> */}
+                  </Typography>
+                </div>
+                   
+                   
+                 
+              
+                
+              ))}
 
-          {pdfView == true ? (<>
-            {/* <a href={pdfURL} download>Download PDF</a> */}
-          {  pdfURL.map((pdfUrl, index) => (
-              <div key={index}>
-                <a href={pdfUrl} target="_blank" rel="noreferrer">
-                  Download PDF {index + 1}
-                </a>
-              </div>
-            ))}
-           
-            <Button
-            color="success"
-            variant="contained"
-            onClick={() => {
-              setApplyBtn(!applyBtn);
-              setPdfView(!pdfView);
-              // getPDFlink(props.jobId);
-
-            }}
-            sx={{ marginRight: "5%", marginTop: "3%" }}
-            >Cancel</Button>
-            
-            </>):(<>
+              <Button
+                color="success"
+                variant="contained"
+                onClick={() => {
+                  setApplyBtn(!applyBtn);
+                  setPdfView(!pdfView);
+                  setLinkId(-1);
+                  // getPDFlink(props.jobId);
+                }}
+                sx={{ marginRight: "5%", marginTop: "3%" }}
+              >
+                Cancel
+              </Button>
+            </>
+          ) : (
+            <>
               <div>
                 <h2 className={classes.uploadCVTitle}>File Upload</h2>
                 <form onSubmit={handleFormSubmit}>
                   <input type="file" onChange={handleFileChange} />
-                  <button className={classes.uploadCVTitle} type="submit">Upload</button>
+                  <button className={classes.uploadCVTitle} type="submit">
+                    Upload
+                  </button>
                 </form>
               </div>
-          </>)}
-          
-
-
-
+            </>
+          )}
         </>
       )}
     </Card>

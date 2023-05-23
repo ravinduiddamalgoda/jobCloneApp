@@ -59,7 +59,7 @@ export const getCv = async (req , res) =>{
         //     };
         //   });
         var val = [];
-            const filePaths = data.map(data => path.join(__dirname, data.cv));
+            // const filePaths = data.map(data => path.join(__dirname, data.cv));
             // fs.readFile(data[0].cv, (err, data) => {
             //     if (err) {
             //       console.error(err);
@@ -77,17 +77,40 @@ export const getCv = async (req , res) =>{
             // });
             // res.setHeader('Content-Type', 'application/pdf');
             // res.status(200).send(val);
-            filePaths.forEach(filePath => {
-                const stream = fs.createReadStream(filePath);
-                stream.pipe(res);
-                index++;
+
+            ////// done code to PDF ///////
+            // filePaths.forEach(filePath => {
+            //     const stream = fs.createReadStream(filePath);
+            //     stream.pipe(res);
+            //     // index++;
                 
-              });
+            //   });
+
+              ///////////////////////////
+
+
+
             // const pdfData =  path.join(__dirname, data[0].cv);
-          res.status(200).send(val);
+          res.status(200).send(data);
         //   res.download(pdfData);
     }catch(err){
         res.status(400).send({err:err.message});
     }
 
+}
+
+
+export const getCVData = async (req , res) =>{
+    const id = req.params['applicantId'];
+
+    try{
+        const cvData = await Applicant.findById({_id: id});
+        const filePath =  path.join(__dirname, cvData.cv);
+
+        const stream = fs.createReadStream(filePath);
+        stream.pipe(res);
+
+    }catch(err){
+        res.status(400).send({err:err.message});
+    }
 }
